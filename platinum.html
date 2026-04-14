@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REÇU PLATINUM | VELORA GROUP</title>
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background: #f1f5f9; }
+        @media print { .no-print { display: none; } body { background: white; } }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+
+        function PlatinumReceipt() {
+            const [date, setDate] = useState("");
+            const [ref, setRef] = useState("");
+
+            useEffect(() => {
+                setDate(new Date().toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' }));
+                setRef(Math.floor(Math.random() * 900000 + 100000));
+            }, []);
+
+            return (
+                <div class="max-w-4xl mx-auto my-10 p-10 bg-white shadow-2xl rounded-lg border-t-8 border-slate-900 relative overflow-hidden">
+                    {/* Watermark Logo */}
+                    <div class="absolute -right-20 -bottom-20 opacity-[0.03] rotate-12">
+                        <h1 class="text-[300px] font-black italic">H</h1>
+                    </div>
+
+                    <div class="flex justify-between items-start mb-16 relative">
+                        <div>
+                            <div class="bg-slate-900 text-white p-4 inline-block rounded-2xl mb-4">
+                                <h1 class="text-3xl font-black italic tracking-tighter uppercase">HAZAR<span class="text-sky-400">TRAVELS</span></h1>
+                            </div>
+                            <p class="text-xs font-bold text-slate-400 uppercase tracking-widest">Membre du groupe Velora Travels Algérie</p>
+                        </div>
+                        <div class="text-right">
+                            <h2 class="text-5xl font-black text-slate-200 uppercase mb-2">REÇU</h2>
+                            <p class="font-bold text-slate-800 tracking-tighter">REF: #{ref}</p>
+                            <p class="text-xs font-bold text-slate-400 uppercase mt-1">{date}</p>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-10 mb-16 relative">
+                        <div class="bg-slate-50 p-6 rounded-2xl">
+                            <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-4">Client / Agence Partenaire</p>
+                            <input type="text" placeholder="NOM DU CLIENT" class="w-full bg-transparent border-b-2 border-slate-200 font-black text-xl outline-none focus:border-sky-500 transition-colors uppercase py-1" />
+                        </div>
+                        <div class="bg-slate-900 p-6 rounded-2xl text-white flex flex-col justify-center">
+                            <p class="text-[10px] font-black text-sky-400 uppercase tracking-widest mb-2">Montant Total Réglé</p>
+                            <div class="flex items-baseline gap-2">
+                                <input type="number" placeholder="0" class="bg-transparent border-none text-4xl font-black w-full outline-none text-white" />
+                                <span class="text-xl font-bold">DZD</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-16">
+                        <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-6">Détails de la transaction</p>
+                        <textarea placeholder="Décrivez les services (ex: Pack Omra x2, Visa Dubaï...)" class="w-full h-32 p-4 bg-slate-50 rounded-2xl border-none font-bold text-slate-700 outline-none focus:ring-2 focus:ring-sky-500/20"></textarea>
+                    </div>
+
+                    <div class="flex justify-between items-center border-t-2 border-dashed border-slate-100 pt-10">
+                        <div class="text-center italic opacity-30 text-[10px] font-bold uppercase tracking-widest">
+                            Ce document fait office de preuve de paiement B2B
+                        </div>
+                        <button onClick={() => window.print()} class="no-print bg-sky-500 text-white px-8 py-4 rounded-xl font-black uppercase text-xs tracking-widest shadow-lg shadow-sky-200 hover:bg-sky-600 transition-all">
+                            Imprimer le Reçu
+                        </button>
+                    </div>
+                </div>
+            );
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<PlatinumReceipt />);
+    </script>
+</body>
+</html>
