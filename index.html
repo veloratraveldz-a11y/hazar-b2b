@@ -43,7 +43,6 @@
     </header>
 
     <main class="max-w-7xl mx-auto px-6 py-16">
-        
         <section class="mb-24">
             <div class="flex items-center justify-between mb-10 border-b-2 border-slate-200 pb-4">
                 <div class="flex items-center gap-4">
@@ -64,7 +63,6 @@
             </div>
             <div id="gridConst" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10"></div>
         </section>
-
     </main>
 
     <div id="modal">
@@ -85,23 +83,52 @@
         const imgIstanbul = "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?q=80&w=800";
 
         const algerData = [
-            { date: "23 - 30 Avril", price: "43.900", days: "8 Jours", bag: "56 KG", company: "Turkish Airlines", img: imgIstanbul, plan: "Aller: 11:10 -> 16:45<br>Retour: 19:50 -> 21:35<br>Bagage: 56kg inclus (2 Valises)." },
-            { date: "25 Avril - 02 Mai", price: "43.500", days: "8 Jours", bag: "56 KG", company: "Turkish Airlines", img: imgIstanbul, plan: "Aller: 00:50 -> 06:30<br>Retour: 14:45 -> 16:30<br>Bagage: 56kg inclus (2 Valises)." },
-            { date: "05 - 08 Mai", price: "42.900", days: "4 Jours", bag: "56 KG", company: "Turkish Airlines", img: imgIstanbul, plan: "TK 654: ALG 18:05 -> IST 23:40<br>TK 655: IST 21:50 -> ALG 23:30<br>Bagage: 56kg inclus." },
-            { date: "06 - 09 Mai", price: "42.900", days: "4 Jours", bag: "56 KG", company: "Turkish Airlines", img: imgIstanbul, plan: "TK 654: ALG 18:05 -> IST 23:40<br>TK 655: IST 21:50 -> ALG 23:30<br>Bagage: 56kg inclus." },
-            { date: "12 - 15 Mai", price: "42.900", days: "4 Jours", bag: "56 KG", company: "Turkish Airlines", img: imgIstanbul, plan: "TK 654: ALG 18:05 -> IST 23:40<br>TK 851: IST 19:40 -> ALG 21:25<br>Bagage: 56kg inclus." },
-            { date: "13 - 16 Mai", price: "42.900", days: "4 Jours", bag: "56 KG", company: "Turkish Airlines", img: imgIstanbul, plan: "TK 654: ALG 18:05 -> IST 23:40<br>TK 651: IST 07:55 -> ALG 09:45<br>Bagage: 56kg inclus." }
+            // 8 JOURS
+            { date: "23 - 30 Avril", price: "43.900", days: "8 Jours", bag: "56 KG", company: "Turkish Airlines", img: imgIstanbul, plan: "Aller: 11:10 -> 16:45<br>Retour: 19:50 -> 21:35<br>Bagage: 56kg inclus." },
+            { date: "24 Avril - 01 Mai", price: "44.000", days: "8 Jours", bag: "56 KG", company: "Turkish Airlines", img: imgIstanbul, plan: "Aller: 00:50 -> 06:30<br>Retour: 15:00 -> 16:45<br>Bagage: 56kg inclus." },
+            { date: "25 Avril - 02 Mai", price: "43.500", days: "8 Jours", bag: "56 KG", company: "Turkish Airlines", img: imgIstanbul, plan: "Aller: 00:50 -> 06:30<br>Retour: 14:45 -> 16:30<br>Bagage: 56kg inclus." },
+            { date: "01 - 08 Mai", price: "44.000", days: "8 Jours", bag: "56 KG", company: "Turkish Airlines", img: imgIstanbul, plan: "Aller: 00:50 -> 06:30<br>Retour: 15:00 -> 16:45<br>Bagage: 56kg inclus." },
+            { date: "02 - 09 Mai", price: "42.000", days: "8 Jours", bag: "56 KG", company: "Turkish Airlines", img: imgIstanbul, plan: "Aller: 00:50 -> 06:30<br>Retour: 14:45 -> 16:30<br>Bagage: 56kg inclus." },
+            { date: "07 - 14 Mai", price: "43.500", days: "8 Jours", bag: "56 KG", company: "Turkish Airlines", img: imgIstanbul, plan: "Aller: 11:10 -> 16:45<br>Retour: 19:50 -> 21:35<br>Bagage: 56kg inclus." },
+            { date: "16 - 23 Mai", price: "42.000", days: "8 Jours", bag: "56 KG", company: "Turkish Airlines", img: imgIstanbul, plan: "Aller: 00:50 -> 06:30<br>Retour: 14:45 -> 16:30<br>Bagage: 56kg inclus." },
+            
+            // 4 JOURS
+            { date: "05 - 08 Mai", price: "42.900", days: "4 Jours", bag: "56 KG", company: "Turkish Airlines", img: imgIstanbul, plan: "Aller: 18:05 -> 23:40<br>Retour: 21:50 -> 23:30<br>Bagage: 56kg inclus." },
+            { date: "06 - 09 Mai", price: "42.900", days: "4 Jours", bag: "56 KG", company: "Turkish Airlines", img: imgIstanbul, plan: "Aller: 18:05 -> 23:40<br>Retour: 21:50 -> 23:30<br>Bagage: 56kg inclus." },
+            { date: "12 - 15 Mai", price: "43.900", days: "4 Jours", bag: "56 KG", company: "Turkish Airlines", img: imgIstanbul, plan: "Aller: 18:05 -> 23:40<br>Retour: 19:40 -> 21:25<br>Bagage: 56kg inclus." },
+            { date: "13 - 16 Mai", price: "42.900", days: "4 Jours", bag: "56 KG", company: "Turkish Airlines", img: imgIstanbul, plan: "Aller: 18:05 -> 23:40<br>Retour: 07:55 -> 09:45<br>Bagage: 56kg inclus." },
+            { date: "14 - 17 Mai", price: "43.900", days: "4 Jours", bag: "56 KG", company: "Turkish Airlines", img: imgIstanbul, plan: "Aller: 18:05 -> 23:40<br>Retour: 19:40 -> 21:25<br>Bagage: 56kg inclus." },
+            { date: "19 - 22 Mai", price: "43.900", days: "4 Jours", bag: "56 KG", company: "Turkish Airlines", img: imgIstanbul, plan: "Aller: 18:05 -> 23:40<br>Retour: 19:40 -> 21:25<br>Bagage: 56kg inclus." },
+            { date: "21 - 24 Mai", price: "43.900", days: "4 Jours", bag: "56 KG", company: "Turkish Airlines", img: imgIstanbul, plan: "Aller: 18:05 -> 23:40<br>Retour: 19:40 -> 21:25<br>Bagage: 56kg inclus." }
         ];
 
         const constData = [
-            { date: "09 - 17 Mai", price: "45.000", days: "9 Jours", bag: "56 KG", company: "Air Algérie", img: imgIstanbul, plan: "Vol Spécial Direct Constantine-Istanbul<br>Bagage: 56kg inclus (2 Valises).<br>Service à bord inclus." },
-            { date: "18 - 26 Mai", price: "45.000", days: "9 Jours", bag: "56 KG", company: "Air Algérie", img: imgIstanbul, plan: "Vol Spécial Direct Constantine-Istanbul<br>Bagage: 56kg inclus (2 Valises).<br>Service à bord inclus." }
+            { date: "09 - 17 Mai", price: "45.000", days: "9 Jours", bag: "56 KG", company: "Air Algérie", img: imgIstanbul, plan: "Vol Spécial Direct Constantine-Istanbul." },
+            { date: "18 - 26 Mai", price: "45.000", days: "9 Jours", bag: "56 KG", company: "Air Algérie", img: imgIstanbul, plan: "Vol Spécial Direct Constantine-Istanbul." }
         ];
 
         function render() {
             const ga = document.getElementById('gridAlger');
             const gc = document.getElementById('gridConst');
-            algerData.forEach(o => ga.innerHTML += createCard(o));
+            ga.innerHTML = ""; gc.innerHTML = "";
+            
+            // 1. Long Stays
+            const longStays = algerData.filter(o => parseInt(o.days) >= 7);
+            longStays.forEach(o => ga.innerHTML += createCard(o));
+
+            // 2. Separator
+            ga.innerHTML += `
+                <div class="col-span-1 md:col-span-2 lg:col-span-3 flex items-center py-10">
+                    <div class="flex-grow h-px bg-slate-300"></div>
+                    <span class="mx-6 text-slate-400 text-[10px] font-black uppercase tracking-[0.4em] italic">Offres 4 Jours</span>
+                    <div class="flex-grow h-px bg-slate-300"></div>
+                </div>
+            `;
+
+            // 3. Short Stays
+            const shortStays = algerData.filter(o => parseInt(o.days) < 7);
+            shortStays.forEach(o => ga.innerHTML += createCard(o));
+
             constData.forEach(o => gc.innerHTML += createCard(o));
         }
 
@@ -137,13 +164,13 @@
         function openPlan(date, price, plan) {
             const modal = document.getElementById('modal');
             const content = document.getElementById('modalContent');
-            const msg = encodeURIComponent(`Bonjour Hazar Travels, je souhaite réserver votre offre :\n📅 Dates: ${date}\n💰 Prix: ${price} DA\nMerci de me donner la marche à suivre.`);
+            const msg = encodeURIComponent(`Bonjour Hazar Travels, je souhaite réserver votre offre :\n📅 Dates: ${date}\n💰 Prix: ${price} DA\nMerci.`);
             content.innerHTML = `
                 <div class="text-center mb-8">
                     <div class="w-16 h-16 bg-sky-50 text-sky-600 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl shadow-inner">
                         <i class="fas fa-plane"></i>
                     </div>
-                    <h3 class="text-2xl font-black text-slate-800 uppercase italic leading-none">Votre Voyage</h3>
+                    <h3 class="text-2xl font-black text-slate-800 uppercase italic leading-none">Détails du Vol</h3>
                     <p class="text-slate-400 font-bold text-xs mt-2 uppercase tracking-[0.2em]">${date}</p>
                 </div>
                 <div class="plan-entry text-slate-600 text-sm mb-10 leading-relaxed font-medium">
@@ -151,9 +178,9 @@
                 </div>
                 <div class="space-y-4">
                     <a href="https://wa.me/${myPhone}?text=${msg}" target="_blank" class="w-full bg-green-500 text-white py-5 rounded-2xl flex items-center justify-center gap-4 font-black shadow-xl shadow-green-200 hover:bg-green-600 transition-all transform hover:scale-[1.02]">
-                        <i class="fab fa-whatsapp text-2xl"></i> RÉSERVER MAINTENANT
+                        <i class="fab fa-whatsapp text-2xl"></i> RÉSERVER SUR WHATSAPP
                     </a>
-                    <button onclick="closeModal()" class="w-full text-slate-400 font-bold text-[10px] uppercase tracking-widest py-2 hover:text-slate-600 transition">Retour aux offres</button>
+                    <button onclick="closeModal()" class="w-full text-slate-400 font-bold text-[10px] uppercase tracking-widest py-2 hover:text-slate-600 transition">Fermer</button>
                 </div>`;
             modal.style.display = 'flex';
         }
