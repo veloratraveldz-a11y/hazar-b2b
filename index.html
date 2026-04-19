@@ -3,148 +3,168 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VELORA TRAVEL | Expert Voyages</title>
+    <title>HAZAR TRAVELS | Billet d'avion</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root { --primary: #0F172A; --accent: #3B82F6; --whatsapp: #25D366; }
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background: #F1F5F9; }
-        .nav-velora { background: var(--primary); border-bottom: 4px solid var(--accent); position: sticky; top: 0; z-index: 100; }
+        :root { --primary: #0F172A; --accent: #3B82F6; --turkish-red: #E81932; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background: #F1F5F9; scroll-behavior: smooth; }
+        .nav-hazar { background: var(--primary); border-bottom: 4px solid var(--accent); position: sticky; top: 0; z-index: 100; }
         
-        /* LOGO TURKISH/AH - HAUTE VISIBILITÉ */
-        .logo-container { background: white !important; padding: 6px 12px; border-radius: 12px; box-shadow: 0 8px 20px rgba(0,0,0,0.25); display: flex !important; align-items: center; justify-content: center; min-width: 90px; height: 48px; position: absolute; top: 15px; right: 15px; z-index: 50; border: 2px solid #F1F5F9; }
-        .logo-container img { height: 22px !important; width: auto !important; display: block !important; visibility: visible !important; opacity: 1 !important; }
+        /* Branding High-End */
+        .brand-red { color: var(--turkish-red); font-weight: 800; font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; }
+        .airline-label { color: var(--turkish-red); font-weight: 800; font-size: 13px; text-transform: uppercase; border-left: 3px solid var(--turkish-red); padding-left: 12px; margin: 15px 0; }
 
-        .filter-btn { transition: 0.3s; color: #94A3B8; cursor: pointer; padding: 10px 18px; border-radius: 12px; font-weight: 800; font-size: 11px; text-transform: uppercase; border: 1px solid rgba(255,255,255,0.1); }
-        .filter-btn.active { background: var(--accent); color: white; border-color: var(--accent); }
+        /* UI Interactive Elements */
+        .filter-btn { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); color: #94A3B8; cursor: pointer; padding: 12px 24px; border-radius: 16px; font-weight: 800; font-size: 10px; text-transform: uppercase; border: 1px solid rgba(255,255,255,0.05); white-space: nowrap; }
+        .filter-btn:hover { background: rgba(59, 130, 246, 0.1); color: white; }
+        .filter-btn.active { background: var(--accent); color: white; box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.4); border-color: var(--accent); }
         
-        .img-zoom-box { height: 240px; overflow: hidden; position: relative; background: #cbd5e1; }
-        .img-zoom-box img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s; }
-        .card-flight:hover .img-zoom-box img { transform: scale(1.1); }
+        .card-flight { transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
+        .card-flight:hover { transform: translateY(-12px); box-shadow: 0 30px 60px -12px rgba(15, 23, 42, 0.15); }
         
-        .badge-ui { position: absolute; top: 15px; left: 15px; z-index: 40; font-size: 10px; font-weight: 900; text-transform: uppercase; padding: 7px 14px; border-radius: 50px; color: white; }
+        .img-container { height: 260px; overflow: hidden; position: relative; background: #E2E8F0; }
+        .img-container img { width: 100%; height: 100%; object-fit: cover; transition: transform 1s; }
+        .card-flight:hover .img-container img { transform: scale(1.15); }
+        
+        .status-badge { position: absolute; top: 20px; left: 20px; z-index: 10; font-size: 10px; font-weight: 900; text-transform: uppercase; padding: 8px 16px; border-radius: 12px; color: white; backdrop-filter: blur(8px); }
     </style>
 </head>
 <body>
 
-    <nav class="nav-velora px-6 py-6">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
-            <div class="flex items-center gap-4">
-                <div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center text-slate-900 font-black text-2xl italic shadow-xl">V</div>
+    <nav class="nav-hazar px-6 py-6 shadow-2xl">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+            <div class="flex items-center gap-5">
+                <div class="w-14 h-14 bg-white rounded-2xl flex items-center justify-center text-slate-900 font-black text-3xl italic shadow-2xl">H</div>
                 <div>
-                    <h1 class="text-white font-black text-2xl uppercase italic tracking-tighter leading-none">Velora Travel</h1>
-                    <p class="text-sky-400 text-[10px] font-bold uppercase tracking-[0.3em] mt-1">Hazar Travels Group</p>
+                    <h1 class="text-white font-black text-2xl uppercase italic tracking-tighter leading-none">Hazar Travels</h1>
+                    <p class="brand-red mt-1">Billet d'avion</p>
                 </div>
             </div>
-            <div class="flex flex-wrap justify-center gap-2">
-                <button onclick="filterOffers('all')" id="btn-all" class="filter-btn active">Tous</button>
-                <button onclick="filterOffers('4')" id="btn-4" class="filter-btn">4J</button>
-                <button onclick="filterOffers('7')" id="btn-7" class="filter-btn">7J</button>
-                <button onclick="filterOffers('8')" id="btn-8" class="filter-btn">8J</button>
-                <button onclick="filterOffers('organise')" id="btn-organise" class="filter-btn border-amber-500/50 text-amber-500">Voyages Organisés</button>
+            <div class="flex flex-wrap justify-center gap-3">
+                <button onclick="handleFilter('all')" id="btn-all" class="filter-btn active">Toutes les offres</button>
+                <button onclick="handleFilter('4')" id="btn-4" class="filter-btn">Billet de 4 Jours</button>
+                <button onclick="handleFilter('7')" id="btn-7" class="filter-btn">Billet de 7 Jours</button>
+                <button onclick="handleFilter('8')" id="btn-8" class="filter-btn">Billet de 8 Jours</button>
+                <button onclick="handleFilter('organise')" id="btn-organise" class="filter-btn border-amber-500/30 text-amber-500">Voyages Organisés</button>
             </div>
         </div>
     </nav>
 
-    <main class="max-w-7xl mx-auto px-6 py-12">
-        <div id="flight-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10"></div>
+    <main class="max-w-7xl mx-auto px-6 py-16">
+        <div id="display-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+            </div>
     </main>
 
     <script>
-        const csvUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQikVMr3Z3Yk4u5zydpB_UZyjgGJ8fUWGaK0ZG2BXid9ZyLxOi9moJwyDyKT0qbBHyEdNbfp3xyaKa3/pub?gid=0&single=true&output=csv";
-        
-        const airlineImages = {
-            tk: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Turkish_Airlines_logo_2019.svg/1280px-Turkish_Airlines_logo_2019.svg.png",
-            ah: "https://upload.wikimedia.org/wikipedia/fr/thumb/3/36/Air_Alg%C3%A9rie_logo.svg/1200px-Air_Alg%C3%A9rie_logo.svg.png",
-            tu: "https://upload.wikimedia.org/wikipedia/fr/thumb/c/c5/Tunisair_logo.svg/1200px-Tunisair_logo.svg.png"
-        };
+        const ENDPOINT = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQikVMr3Z3Yk4u5zydpB_UZyjgGJ8fUWGaK0ZG2BXid9ZyLxOi9moJwyDyKT0qbBHyEdNbfp3xyaKa3/pub?gid=0&single=true&output=csv";
+        let store = [];
 
-        let allData = [];
-
-        async function init() {
+        async function boot() {
             try {
-                const res = await fetch(csvUrl + '&v=' + Date.now());
-                const text = await res.text();
-                const rows = text.split(/\r?\n/).filter(r => r.length > 15);
-                const sep = rows[0].includes(';') ? ';' : ',';
+                const response = await fetch(`${ENDPOINT}&cache_bust=${Date.now()}`);
+                const rawData = await response.text();
+                const lines = rawData.split(/\r?\n/).filter(line => line.trim().length > 20);
+                
+                // Détecteur de structure dynamique
+                const delimiter = lines[0].includes(';') ? ';' : ',';
 
-                allData = rows.slice(1).map(row => {
-                    const cols = row.split(sep).map(c => c.replace(/"/g, '').trim());
-                    const rowLower = row.toLowerCase();
-                    const destination = cols[1] || "";
+                store = lines.slice(1).map(line => {
+                    const data = line.split(delimiter).map(field => field.replace(/"/g, '').trim());
                     
-                    // DÉTECTION LOGO : On cherche dans TOUTE la ligne pour être sûr
-                    let logo = null;
-                    if (rowLower.includes("tk")) logo = airlineImages.tk;
-                    else if (rowLower.includes("ah")) logo = airlineImages.ah;
-                    else if (rowLower.includes("tu")) logo = airlineImages.tu;
+                    const destination = data[1] || "Destination";
+                    const daysRaw = data[3] || "";
+                    const airlineRaw = (data[5] || "").toLowerCase();
+                    
+                    // Logic: Extraction numérique stricte pour éviter le bug "8 vs 18"
+                    const dayId = daysRaw.replace(/\D/g, ""); 
+
+                    let airlineName = data[5] || "Hazar Travels";
+                    if (airlineRaw.includes("tk")) airlineName = "Turkish Airlines";
+                    else if (airlineRaw.includes("ah")) airlineName = "Air Algérie";
+                    else if (airlineRaw.includes("tu")) airlineName = "Tunisair";
 
                     return {
-                        date: cols[0] || "",
-                        dest: destination,
-                        price: cols[2] || "0",
-                        days: cols[3] || "",
-                        bag: cols[4] || "",
-                        logo: logo,
-                        plan: cols[6] || "",
-                        // DÉTECTION VOYAGE ORGANISÉ (Plus flexible)
-                        isOrg: destination.toLowerCase().includes("organise") || destination.toLowerCase().includes("voyage"),
-                        img: (cols[8] && cols[8].length > 15) ? cols[8] : "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=800"
+                        date: data[0] || "Date à venir",
+                        title: destination,
+                        price: data[2] || "Promo",
+                        duration: daysRaw,
+                        filterId: dayId,
+                        luggage: data[4] || "2x23kg",
+                        airline: airlineName,
+                        details: data[6] || "",
+                        isOrganized: line.toLowerCase().includes("organise") || destination.toLowerCase().includes("voyage"),
+                        image: (data[8] && data[8].includes("http")) ? data[8] : "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=800"
                     };
-                }).filter(i => i.dest !== "");
+                }).filter(item => item.title !== "Destination");
 
-                render(allData);
-            } catch (e) { console.error(e); }
+                render(store);
+            } catch (err) {
+                console.error("System Error:", err);
+            }
         }
 
-        function render(list) {
-            const container = document.getElementById('flight-container');
-            container.innerHTML = "";
-            
-            if (list.length === 0) {
-                container.innerHTML = "<p class='text-center col-span-full py-20 text-slate-400 font-bold'>Aucune offre trouvée.</p>";
-                return;
-            }
+        function render(items) {
+            const grid = document.getElementById('display-grid');
+            grid.innerHTML = items.length ? "" : `<div class="col-span-full text-center py-20 text-slate-400 font-bold uppercase tracking-widest">Aucune offre disponible actuellement</div>`;
 
-            list.forEach(o => {
-                const badgeColor = o.isOrg ? "bg-amber-500 shadow-amber-200" : "bg-slate-900 shadow-slate-300";
-                const badgeText = o.isOrg ? "Voyage Organisé" : "Billet Flash";
-                const logoHtml = o.logo ? `<div class="logo-container"><img src="${o.logo}"></div>` : '';
-
-                container.innerHTML += `
-                <div class="card-flight bg-white rounded-[32px] overflow-hidden border border-slate-100 flex flex-col transition-all hover:-translate-y-2 hover:shadow-2xl">
-                    <div class="img-zoom-box">
-                        <img src="${o.img}" onerror="this.src='https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=800'">
-                        <div class="badge-ui ${badgeColor} shadow-lg">${badgeText}</div>
-                        ${logoHtml}
-                    </div>
-                    <div class="p-8 flex flex-col flex-grow">
-                        <h4 class="text-2xl font-black text-slate-900 uppercase italic leading-none mb-1">${o.dest}</h4>
-                        <p class="text-slate-400 font-bold text-[10px] uppercase mb-5 tracking-widest">${o.date} — <span class="text-blue-600">${o.days}</span></p>
-                        
-                        <div class="bg-slate-50 p-6 rounded-3xl border border-slate-100 mb-8 flex-grow">
-                            <div class="flex justify-between items-end mb-6">
-                                <div><p class="text-[9px] font-bold text-slate-400 uppercase">Prix TTC</p><span class="text-3xl font-black text-slate-900 tracking-tighter">${o.price} <small class="text-xs uppercase">DA</small></span></div>
-                                <div class="text-right"><p class="text-[9px] font-bold text-slate-400 uppercase">Bagage</p><span class="text-xs font-black text-slate-700 italic border-b-2 border-blue-200 pb-0.5">${o.bag}</span></div>
-                            </div>
-                            <div class="border-t border-slate-200 pt-5"><p class="text-[10px] font-black text-blue-600 uppercase mb-2">Détails & Programme :</p><p class="text-[11px] text-slate-800 font-bold leading-relaxed whitespace-pre-line italic opacity-90">${o.plan}</p></div>
+            items.forEach(item => {
+                grid.innerHTML += `
+                <article class="card-flight bg-white rounded-[40px] overflow-hidden border border-slate-100 flex flex-col shadow-sm">
+                    <div class="img-container">
+                        <img src="${item.image}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=800'">
+                        <div class="status-badge ${item.isOrganized ? 'bg-amber-500' : 'bg-slate-900'} shadow-xl">
+                            ${item.isOrganized ? 'Voyage Organisé' : 'Billet Flash'}
                         </div>
-                        <a href="https://wa.me/213558332601?text=Salam Velora, réservation pour : ${o.dest}" target="_blank" class="w-full bg-slate-900 text-white py-5 rounded-2xl font-black text-[11px] uppercase tracking-widest flex items-center justify-center gap-4 hover:bg-slate-800 shadow-xl">RÉSERVER <i class="fab fa-whatsapp text-xl text-green-400"></i></a>
                     </div>
-                </div>`;
+                    
+                    <div class="p-10 flex flex-col flex-grow">
+                        <h2 class="text-3xl font-black text-slate-900 uppercase italic tracking-tighter mb-1">${item.title}</h2>
+                        <div class="flex items-center gap-2 mb-6">
+                            <span class="text-slate-400 font-bold text-[11px] uppercase tracking-widest">${item.date}</span>
+                            <span class="w-1 h-1 bg-slate-300 rounded-full"></span>
+                            <span class="text-blue-600 font-black text-[11px] uppercase">${item.duration}</span>
+                        </div>
+
+                        <div class="airline-label">${item.airline}</div>
+
+                        <div class="bg-slate-50 p-8 rounded-[32px] border border-slate-100 mb-8">
+                            <div class="flex justify-between items-center mb-6">
+                                <div>
+                                    <p class="text-[10px] font-bold text-slate-400 uppercase mb-1">Prix Global</p>
+                                    <p class="text-3xl font-black text-slate-900 tracking-tighter">${item.price} <small class="text-xs">DA</small></p>
+                                </div>
+                                <div class="text-right">
+                                    <p class="text-[10px] font-bold text-slate-400 uppercase mb-1">Bagage</p>
+                                    <p class="text-sm font-black text-slate-700 italic border-b-2 border-blue-200">${item.luggage}</p>
+                                </div>
+                            </div>
+                            <div class="pt-6 border-t border-slate-200">
+                                <p class="text-[11px] text-slate-600 font-bold italic leading-relaxed whitespace-pre-line">${item.details}</p>
+                            </div>
+                        </div>
+
+                        <a href="https://wa.me/213558332601?text=Salam Hazar Travels, je suis intéressé par l'offre : ${item.title}" 
+                           target="_blank" 
+                           class="mt-auto w-full bg-slate-900 text-white py-6 rounded-2xl font-black text-[12px] uppercase tracking-widest flex items-center justify-center gap-4 hover:bg-slate-800 transition-all shadow-xl">
+                            RÉSERVER MAINTENANT <i class="fab fa-whatsapp text-xl text-green-400"></i>
+                        </a>
+                    </div>
+                </article>`;
             });
         }
 
-        function filterOffers(type) {
+        function handleFilter(category) {
             document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-            document.getElementById('btn-' + type).classList.add('active');
-            if (type === 'all') render(allData);
-            else if (type === 'organise') render(allData.filter(f => f.isOrg));
-            else render(allData.filter(f => f.days.toLowerCase().includes(type)));
+            document.getElementById(`btn-${category}`).classList.add('active');
+
+            if (category === 'all') render(store);
+            else if (category === 'organise') render(store.filter(i => i.isOrganized));
+            else render(store.filter(i => i.filterId === category));
         }
 
-        init();
+        boot();
     </script>
 </body>
 </html>
