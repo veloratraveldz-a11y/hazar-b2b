@@ -172,5 +172,108 @@
         }
         init();
     </script>
+    <script>
+    const SHEET_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQikVMr3Z3Yk4u5zydpB_UZyjgGJ8fUWGaK0ZG2BXid9ZyLxOi9moJwyDyKT0qbBHyEdNbfp3xyaKa3/pub?gid=0&single=true&output=csv";
+    let dataStore = [];
+
+    // Scroll Logic
+    let lastPos = window.pageYOffset;
+    window.onscroll = () => {
+        let nowPos = window.pageYOffset;
+        const nav = document.getElementById("navbar");
+        if (nowPos > lastPos && nowPos > 150) nav.classList.add("nav-up");
+        else nav.classList.remove("nav-up");
+        lastPos = nowPos;
+    }
+
+    async function init() {
+        try {
+            const res = await fetch(`${SHEET_URL}&cb=${Date.now()}`);
+            const text = await res.text();
+            const rows = text.split(/\r?\n/).filter(r => r.trim().length > 30);
+            const sep = rows[0].includes(';') ? ';' : ',';
+
+            dataStore = rows.slice(1).map(row => {
+                // Nettoyage des guillemets et espaces
+                const c = row.split(sep).map(f => f.replace(/"/g, '').trim());
+                const dest = c[1] || "";
+                const isOrg = row.toLowerCase().includes("organise") || dest.toLowerCase().includes("voyage");
+
+                // --- DÉTECTION IMAGE ULTRA-PUISSANTE ---
+                // Le code cherche maintenant le LIEN dans TOUTES les colonnes de la ligne
+                // Cela règle le problème si le lien est en colonne 9, 10 ou 11
+                let foundImg = c.find(field => field.toLowerCase().startsWith('http'));
+                let finalImg = foundImg ? foundImg.replace(/\s/g, '') : "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=800";
+
+                // Traduction Compagnies
+                let airline = (c[5] || "Hazar Travels").toUpperCase();
+                if (airline.includes('TK')) airline = "Turkish Airlines";
+                else if (airline.includes('AH')) airline = "Air Algérie";
+                else if (airline.includes('TU')) airline = "Tunisair";
+
+                const dayMatch = (c[3] || "").match(/\d+/);
+
+                return {
+                    date: c[0] || "",
+                    dest: dest,
+                    prix: c[2] || "Promo",
+                    duree: c[3] || "",
+                    filterId: dayMatch ? dayMatch[0] : "",
+                    bag: c[4] || "2x23kg",
+                    airline: airline,
+                    plan: c[6] || "",
+                    image: finalImg, // L'image trouvée dynamiquement
+                    isOrg: isOrg
+                };
+            }).filter(i => i.dest.length > 2);
+            
+            render(dataStore);
+        } catch (e) { console.error("Erreur:", e); }
+    }
+
+    function render(items) {
+        const container = document.getElementById('grid');
+        container.innerHTML = items.length ? "" : "<p class='col-span-full text-center py-20 font-black text-slate-300 uppercase'>Chargement...</p>";
+        
+        items.forEach(item => {
+            container.innerHTML += `
+            <div class="card-flight shadow-lg">
+                <div class="img-container">
+                    <img src="${item.image}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=800'">
+                    <div class="badge-ui p-2 px-4 ${item.isOrg ? 'badge-gold' : 'badge-dark'} shadow-lg">
+                        ${item.isOrg ? '<i class="fas fa-star mr-2"></i>Voyage Organisé' : 'Billet Flash'}
+                    </div>
+                </div>
+                <div class="p-8 flex flex-col flex-grow">
+                    <h2 class="text-2xl font-black text-slate-900 uppercase italic tracking-tighter leading-tight">${item.dest}</h2>
+                    <div class="flex items-center gap-2 mt-2 mb-4">
+                        <span class="text-slate-400 font-bold text-[10px] uppercase tracking-widest">${item.date}</span>
+                        <span class="w-1 h-1 bg-slate-200 rounded-full"></span>
+                        <span class="text-blue-600 font-black text-[10px] uppercase italic">${item.duree}</span>
+                    </div>
+                    <div class="airline-label">${item.airline}</div>
+                    <div class="bg-slate-50 p-6 rounded-[28px] border border-slate-100 mb-8 flex-grow">
+                        <div class="flex justify-between items-center mb-6">
+                            <div><p class="text-[9px] font-bold text-slate-400 uppercase mb-1">Tarif</p><span class="text-3xl font-black text-slate-900 tracking-tighter">${item.prix} <small class="text-xs">DA</small></span></div>
+                            <div class="text-right"><p class="text-[9px] font-bold text-slate-400 uppercase mb-1">Bagage</p><span class="text-xs font-black text-slate-700 italic border-b-2 border-blue-200">${item.bag}</span></div>
+                        </div>
+                        <p class="text-[11px] text-slate-600 font-bold italic leading-relaxed pt-5 border-t border-slate-200">${item.plan}</p>
+                    </div>
+                    <a href="https://wa.me/213558332601?text=Salam Hazar Travels, je réserve : ${item.dest}" target="_blank" class="w-full bg-slate-900 text-white py-5 rounded-2xl font-black text-[11px] uppercase tracking-widest flex items-center justify-center gap-4 active:scale-95 transition-all shadow-xl">RÉSERVER <i class="fab fa-whatsapp text-xl text-green-400"></i></a>
+                </div>
+            </div>`;
+        });
+    }
+
+    function applyFilter(cat) {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        document.getElementById('btn-' + cat).classList.add('active');
+        if (cat === 'all') render(dataStore);
+        else if (cat === 'organise') render(dataStore.filter(i => i.isOrg));
+        else render(dataStore.filter(i => i.filterId === cat && !i.isOrg));
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    init();
+</script>
 </body>
 </html>
