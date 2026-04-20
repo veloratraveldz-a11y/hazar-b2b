@@ -3,57 +3,96 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>HAZAR TRAVELS | Vente Flash</title>
+    <title>PRESTA TOURS | Billets Promotionnels</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root { --primary: #0F172A; --accent: #3B82F6; --turkish-red: #E81932; --whatsapp-green: #25D366; }
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background: #F8FAFC; margin: 0; padding-top: 160px; }
+        /* Palette inspirée de vos logos : Bleu, Rouge et Or */
+        :root { 
+            --primary: #005696; /* Bleu Turkish */
+            --accent-gold: #D4AF37; /* Or Presta */
+            --turkish-red: #E81932; /* Rouge Flash */
+            --whatsapp-green: #25D366; 
+        }
         
-        /* Header avec disparition au scroll */
-        .nav-hazar { background: var(--primary); position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 10px 16px; border-bottom: 3px solid var(--turkish-red); transition: transform 0.4s ease; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background: #F4F7FA; margin: 0; padding-top: 160px; }
+        
+        /* Header Dynamique */
+        .nav-presta { 
+            background: var(--primary); 
+            position: fixed; 
+            top: 0; left: 0; right: 0; 
+            z-index: 1000; 
+            padding: 10px 16px; 
+            border-bottom: 4px solid var(--accent-gold); 
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); 
+        }
         .nav-hidden { transform: translateY(-100%); }
 
-        /* Animation Vente Flash */
-        .flash-sale-banner { background: var(--turkish-red); color: white; font-size: 10px; font-weight: 900; text-transform: uppercase; padding: 4px 0; overflow: hidden; white-space: nowrap; margin: -10px -16px 10px -16px; }
-        .marquee { display: inline-block; animation: marquee 15s linear infinite; }
+        /* Bannière Vente Flash */
+        .flash-sale-banner { 
+            background: var(--turkish-red); 
+            color: white; 
+            font-size: 11px; 
+            font-weight: 900; 
+            text-transform: uppercase; 
+            padding: 6px 0; 
+            margin: -10px -16px 10px -16px;
+            box-shadow: inset 0 -2px 5px rgba(0,0,0,0.2);
+        }
+        .marquee { display: inline-block; animation: marquee 18s linear infinite; }
         @keyframes marquee { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
 
-        /* Filtres */
-        .filter-wrapper { display: flex; overflow-x: auto; gap: 8px; padding: 10px 0; scrollbar-width: none; }
-        .filter-btn { flex-shrink: 0; padding: 8px 18px; border-radius: 12px; font-weight: 800; font-size: 10px; text-transform: uppercase; color: #94A3B8; border: 1px solid rgba(255,255,255,0.1); }
-        .filter-btn.active { background: var(--turkish-red); color: white; border-color: var(--turkish-red); }
+        /* Filtres Or */
+        .filter-wrapper { display: flex; overflow-x: auto; gap: 10px; padding: 10px 0; scrollbar-width: none; }
+        .filter-btn { 
+            flex-shrink: 0; padding: 8px 20px; border-radius: 50px; 
+            font-weight: 800; font-size: 11px; text-transform: uppercase; 
+            color: white; border: 1px solid rgba(212, 175, 55, 0.4); 
+            transition: 0.3s;
+        }
+        .filter-btn.active { background: var(--accent-gold); color: var(--primary); border-color: var(--accent-gold); }
 
-        /* Cartes & Prix */
-        .card-flight { background: white; border-radius: 24px; overflow: hidden; border: 1px solid #E2E8F0; position: relative; }
-        .img-container { height: 210px; position: relative; overflow: hidden; }
-        .img-container img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s ease; }
-        .card-flight:hover .img-container img { transform: scale(1.1); }
+        /* Cartes & Typographie */
+        .card-flight { background: white; border-radius: 28px; overflow: hidden; border: 1px solid #E2E8F0; position: relative; transition: 0.3s; }
+        .card-flight:hover { border-color: var(--accent-gold); box-shadow: 0 15px 30px rgba(0,0,0,0.08); }
         
-        .price-tag { color: var(--turkish-red); font-size: 28px; font-weight: 900; letter-spacing: -1px; }
+        .img-container { height: 220px; position: relative; overflow: hidden; background: #EEE; }
+        .img-container img { width: 100%; height: 100%; object-fit: cover; transition: 0.8s ease; }
         
-        .btn-whatsapp { background: var(--whatsapp-green); color: white; padding: 18px; border-radius: 20px; font-weight: 900; text-transform: uppercase; display: flex; align-items: center; justify-content: center; gap: 10px; box-shadow: 0 10px 20px rgba(37, 211, 102, 0.2); transition: 0.3s; width: 100%; }
-        .btn-whatsapp:active { transform: scale(0.95); }
+        .price-tag { color: var(--turkish-red); font-size: 32px; font-weight: 900; letter-spacing: -1.5px; }
+        
+        .btn-whatsapp { 
+            background: var(--whatsapp-green); 
+            color: white; padding: 20px; border-radius: 22px; 
+            font-weight: 900; text-transform: uppercase; 
+            display: flex; align-items: center; justify-content: center; 
+            gap: 12px; transition: 0.3s; width: 100%; 
+            box-shadow: 0 8px 15px rgba(37, 211, 102, 0.2);
+        }
 
-        .city-divider { grid-column: 1 / -1; display: flex; align-items: center; gap: 15px; margin: 20px 0 10px 0; }
-        .city-divider h3 { font-weight: 900; font-size: 12px; text-transform: uppercase; color: var(--primary); }
-        .city-line { height: 1px; background: #E2E8F0; flex-grow: 1; }
+        .city-divider { grid-column: 1 / -1; display: flex; align-items: center; gap: 15px; margin: 30px 0 15px 0; }
+        .city-divider h3 { font-weight: 900; font-size: 13px; text-transform: uppercase; color: var(--primary); letter-spacing: 1px; }
+        .city-line { height: 2px; background: linear-gradient(to right, var(--accent-gold), transparent); flex-grow: 1; }
     </style>
 </head>
 <body>
 
-    <nav id="navbar" class="nav-hazar">
+    <nav id="navbar" class="nav-presta">
         <div class="flash-sale-banner">
-            <div class="marquee">🔥 VENTE FLASH DISPONIBLE — RÉSERVEZ MAINTENANT — OFFRES LIMITÉES — HAZAR TRAVELS 🔥</div>
+            <div class="marquee">⚡ VENTE FLASH PRESTA TOURS : DES PRIX IMBATTABLES POUR ISTANBUL ET PLUS — RÉSERVEZ EN UN CLIC ⚡</div>
         </div>
         <div class="max-w-7xl mx-auto">
             <div class="flex items-center gap-3">
-                <div class="w-10 h-10 bg-white rounded-xl flex items-center justify-center text-slate-900 font-black text-xl italic shadow-lg">H</div>
-                <h1 class="text-white font-black text-lg uppercase italic tracking-tighter">Hazar Travels</h1>
+                <div class="w-10 h-10 bg-[#D4AF37] rounded-xl flex items-center justify-center text-white font-black text-2xl shadow-inner">P</div>
+                <div>
+                    <h1 class="text-white font-black text-xl uppercase tracking-tighter leading-none">Presta Tours</h1>
+                    <span class="text-[#D4AF37] font-bold text-[10px] uppercase tracking-[0.2em]">Travel Services</span>
+                </div>
             </div>
-            <div class="filter-wrapper mt-2">
-                <button onclick="applyFilter('all')" id="btn-all" class="filter-btn active">Tout</button>
+            <div class="filter-wrapper mt-3">
+                <button onclick="applyFilter('all')" id="btn-all" class="filter-btn active">Toutes les offres</button>
                 <button onclick="applyFilter('4')" id="btn-4" class="filter-btn">4 Jours</button>
                 <button onclick="applyFilter('7')" id="btn-7" class="filter-btn">7 Jours</button>
                 <button onclick="applyFilter('8')" id="btn-8" class="filter-btn">8 Jours</button>
@@ -70,7 +109,7 @@
         let dataStore = [];
         let lastScroll = 0;
 
-        // Effet scroll pour cacher/montrer le header
+        // Gestion du Header au Scroll
         window.addEventListener("scroll", () => {
             const currentScroll = window.pageYOffset;
             const nav = document.getElementById("navbar");
@@ -99,12 +138,12 @@
                         filterId: dureeVal ? dureeVal[0] : "all",
                         bag: c[4], airline: c[5] || "Vol Direct",
                         plan: c[6], places: c[7], 
-                        image: c.find(f => f.startsWith('http')) || "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=800"
+                        image: c.find(f => f.startsWith('http')) || "https://images.unsplash.com/photo-1527838832700-5059252407fa?w=800"
                     };
                 }).filter(o => o !== null);
 
                 render(dataStore);
-            } catch (e) { console.error(e); }
+            } catch (e) { console.error("Erreur de chargement", e); }
         }
 
         function render(items) {
@@ -119,26 +158,36 @@
             }, {});
 
             Object.keys(groups).forEach(city => {
-                container.innerHTML += `<div class="city-divider"><h3>${city}</h3><div class="city-line"></div></div>`;
+                container.innerHTML += `<div class="city-divider"><h3><i class="fas fa-map-marker-alt mr-2"></i> ${city}</h3><div class="city-line"></div></div>`;
                 groups[city].forEach(item => {
                     container.innerHTML += `
                     <div class="card-flight shadow-sm">
                         <div class="img-container">
-                            <img src="${item.image}">
-                            <div class="absolute top-4 left-4 bg-white/90 px-3 py-1 rounded font-black text-[9px] uppercase">${item.airline}</div>
-                            <div class="absolute bottom-4 right-4 bg-red-600 text-white px-3 py-1 rounded-full font-black text-[10px] animate-pulse">${item.places} PLACES RESTANTES</div>
+                            <img src="${item.image}" loading="lazy">
+                            <div class="absolute top-4 left-4 bg-white px-3 py-1 rounded-lg font-black text-[10px] text-blue-900 shadow-lg uppercase border-l-4 border-red-600">${item.airline}</div>
+                            <div class="absolute bottom-4 right-4 bg-red-600 text-white px-4 py-1.5 rounded-full font-black text-[10px] shadow-xl animate-bounce">🔥 ${item.places} PLACES</div>
                         </div>
                         <div class="p-6">
-                            <h2 class="text-2xl font-black text-slate-900 uppercase tracking-tighter leading-tight">${item.dest}</h2>
-                            <p class="text-slate-500 font-bold text-xs mb-4 italic">${item.date} — ${item.duree}</p>
+                            <div class="text-[10px] font-black text-[#D4AF37] uppercase mb-1 tracking-widest">Offre Spéciale Presta</div>
+                            <h2 class="text-2xl font-black text-slate-900 uppercase tracking-tighter leading-none mb-4">${item.dest}</h2>
                             
-                            <div class="mb-6">
-                                <span class="text-xs font-bold text-slate-400 uppercase block">Prix Promotionnel</span>
-                                <span class="price-tag">${item.prix} DA</span>
+                            <div class="flex items-center gap-4 mb-6 text-slate-500 font-bold text-xs bg-slate-50 p-2 rounded-lg">
+                                <span><i class="far fa-calendar-alt text-red-500 mr-1"></i> ${item.date}</span>
+                                <span><i class="far fa-clock text-red-500 mr-1"></i> ${item.duree}</span>
+                            </div>
+                            
+                            <div class="mb-6 flex items-end justify-between">
+                                <div>
+                                    <span class="text-[10px] font-bold text-slate-400 uppercase block">Prix Final</span>
+                                    <span class="price-tag">${item.prix} DA</span>
+                                </div>
+                                <div class="text-right text-[11px] font-bold text-slate-600">
+                                    <i class="fas fa-suitcase text-blue-500"></i> ${item.bag}
+                                </div>
                             </div>
 
-                            <button onclick="sendWhatsApp('${item.dest}', '${item.prix}')" class="btn-whatsapp">
-                                RÉSERVER MAINTENANT <i class="fab fa-whatsapp text-2xl"></i>
+                            <button onclick="sendWhatsApp('${item.dest}', '${item.prix}', '${item.date}')" class="btn-whatsapp">
+                                RÉSERVER SUR WHATSAPP <i class="fab fa-whatsapp text-2xl"></i>
                             </button>
                         </div>
                     </div>`;
@@ -155,8 +204,8 @@
             else render(dataStore.filter(i => i.filterId === cat));
         }
 
-        function sendWhatsApp(dest, prix) {
-            const msg = encodeURIComponent(`Bonjour Hazar Travels, je souhaite profiter de la VENTE FLASH pour : ${dest} (${prix} DA).`);
+        function sendWhatsApp(dest, prix, date) {
+            const msg = encodeURIComponent(`Bonjour PRESTA TOURS, je souhaite réserver l'offre promotionnelle pour ${dest} du ${date} au prix de ${prix} DA.`);
             window.open(`https://wa.me/213558332601?text=${msg}`, '_blank');
         }
 
