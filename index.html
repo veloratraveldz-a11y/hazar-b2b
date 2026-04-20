@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>HAZAR TRAVELS | Premium</title>
+    <title>HAZAR TRAVELS | Officiel</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -11,6 +11,7 @@
         :root { --primary: #0F172A; --accent: #3B82F6; --turkish-red: #E81932; }
         body { font-family: 'Plus Jakarta Sans', sans-serif; background: #F8FAFC; margin: 0; padding-top: 140px; }
         
+        /* HEADER DYNAMIQUE */
         .nav-hazar { background: var(--primary); position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 12px 16px; border-bottom: 3px solid var(--accent); transition: transform 0.4s ease; }
         .nav-hidden { transform: translateY(-100%); }
 
@@ -22,19 +23,20 @@
         .city-divider h3 { font-weight: 900; font-size: 14px; text-transform: uppercase; color: var(--primary); }
         .city-line { height: 1px; background: #E2E8F0; flex-grow: 1; }
 
-        .card-flight { background: white; border-radius: 28px; overflow: hidden; border: 1px solid #E2E8F0; transition: 0.3s; height: fit-content; }
+        .card-flight { background: white; border-radius: 28px; overflow: hidden; border: 1px solid #E2E8F0; transition: 0.3s; }
         
-        /* IMAGE & BADGES */
-        .img-container { height: 230px; position: relative; background: #1e293b; }
-        .img-container img { width: 100%; height: 100%; object-fit: cover; opacity: 0.9; }
+        /* EFFET ZOOM RÉTABLI */
+        .img-container { height: 230px; position: relative; overflow: hidden; background: #1e293b; }
+        .img-container img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); }
+        .card-flight:hover .img-container img { transform: scale(1.15); }
         
-        .airline-tag { position: absolute; top: 15px; left: 15px; background: rgba(255,255,255,0.95); padding: 4px 12px; border-radius: 8px; font-size: 9px; font-weight: 900; color: var(--primary); display: flex; align-items: center; gap: 5px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); text-transform: uppercase; }
-        .places-badge { position: absolute; bottom: 15px; right: 15px; background: white; padding: 6px 14px; border-radius: 12px; font-size: 11px; font-weight: 900; color: var(--turkish-red); box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .airline-tag { position: absolute; top: 15px; left: 15px; background: rgba(255,255,255,0.95); padding: 5px 12px; border-radius: 8px; font-size: 9px; font-weight: 900; color: var(--primary); z-index: 10; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        .places-badge { position: absolute; bottom: 15px; right: 15px; background: white; padding: 6px 14px; border-radius: 12px; font-size: 11px; font-weight: 900; color: var(--turkish-red); z-index: 10; }
 
         .extra-info { display: none; padding: 20px; border-top: 1px dashed #E2E8F0; background: #FBFCFE; }
         .info-active { display: block !important; }
 
-        #bookingModal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 2000; align-items: center; justify-content: center; padding: 20px; backdrop-filter: blur(8px); }
+        #bookingModal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 2000; align-items: center; justify-content: center; padding: 20px; backdrop-filter: blur(8px); }
         .modal-content { background: white; width: 100%; max-width: 420px; border-radius: 32px; padding: 35px; }
         input { width: 100%; padding: 15px; margin-bottom: 12px; border: 1.5px solid #F1F5F9; background: #F8FAFC; border-radius: 16px; font-weight: 600; }
     </style>
@@ -44,7 +46,7 @@
     <nav id="navbar" class="nav-hazar">
         <div class="max-w-7xl mx-auto">
             <div class="flex items-center gap-3">
-                <div class="w-10 h-10 bg-white rounded-xl flex items-center justify-center text-slate-900 font-black text-xl italic">H</div>
+                <div class="w-10 h-10 bg-white rounded-xl flex items-center justify-center text-slate-900 font-black text-xl italic shadow-lg">H</div>
                 <h1 class="text-white font-black text-lg uppercase italic tracking-tighter">Hazar Travels</h1>
             </div>
             <div class="filter-wrapper mt-3">
@@ -64,14 +66,14 @@
     <div id="bookingModal">
         <div class="modal-content">
             <button onclick="closeModal()" class="absolute top-6 right-6 text-slate-400"><i class="fas fa-times text-xl"></i></button>
-            <h2 class="text-2xl font-black text-slate-900 mb-1 italic">RÉSERVER</h2>
+            <h2 class="text-2xl font-black text-slate-900 mb-1">RÉSERVER</h2>
             <p id="modalDest" class="text-blue-600 font-extrabold text-xs mb-6 uppercase"></p>
             <form id="resForm">
                 <input type="text" id="nom" placeholder="Nom" required>
                 <input type="text" id="prenom" placeholder="Prénom" required>
                 <input type="text" id="phone" placeholder="Téléphone" required>
                 <input type="text" id="passport" placeholder="N° Passport" required>
-                <p class="text-[10px] font-black text-slate-400 mb-2 ml-1">EXPIRATION PASSPORT</p>
+                <p class="text-[10px] font-black text-slate-400 mb-2 ml-1 uppercase">Expiration</p>
                 <input type="date" id="passExp" required>
                 <button type="submit" id="submitBtn" class="w-full bg-slate-900 text-white py-5 rounded-2xl font-black text-sm uppercase shadow-xl mt-4 flex items-center justify-center gap-3">
                     CONFIRMER <i class="fab fa-whatsapp text-green-400"></i>
@@ -90,27 +92,27 @@
         window.addEventListener("scroll", () => {
             const currentScroll = window.pageYOffset;
             const nav = document.getElementById("navbar");
-            if (currentScroll > lastScroll && currentScroll > 150) nav.classList.add("nav-hidden");
+            if (currentScroll > lastScroll && currentScroll > 100) nav.classList.add("nav-hidden");
             else nav.classList.remove("nav-hidden");
             lastScroll = currentScroll;
         });
 
-        // DICTIONNAIRE IA IMAGES & COMPAGNIES
-        const cityPhotos = {
-            istanbul: "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?w=800",
-            tunis: "https://images.unsplash.com/photo-1533104816931-20fa69186c44?w=800",
-            dubai: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800",
-            antalya: "https://images.unsplash.com/photo-15420518418c7-d2a420be9917?w=800",
-            alicante: "https://images.unsplash.com/photo-1563910621453-200171e35821?w=800",
-            constantine: "https://images.unsplash.com/photo-1578310061553-68f000300481?w=800"
+        // LOGIQUE D'IMAGES DIFFÉRENCIÉES
+        const imgBank = {
+            org: {
+                istanbul: "https://images.unsplash.com/photo-1541432901042-2dad3076106b?w=800",
+                tunis: "https://images.unsplash.com/photo-1589113331515-9988a053aa73?w=800",
+                dubai: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800",
+                antalya: "https://images.unsplash.com/photo-15420518418c7-d2a420be9917?w=800"
+            },
+            vols: {
+                tk: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=800", // Avion Air
+                ah: "https://images.unsplash.com/photo-1521111998-35664917b20e?w=800", // Terminal
+                default: "https://images.unsplash.com/photo-1544016768-982d1554f0b9?w=800" // Nuages/Ailes
+            }
         };
 
-        const companyNames = {
-            "tk": "Turkish Airlines",
-            "ah": "Air Algérie",
-            "tu": "Tunisair",
-            "qr": "Qatar Airways"
-        };
+        const companyMap = { "tk": "Turkish Airlines", "ah": "Air Algérie", "tu": "Tunisair" };
 
         async function init() {
             try {
@@ -122,28 +124,27 @@
                 dataStore = rows.slice(1).map((row, index) => {
                     const c = row.split(sep).map(f => f.replace(/"/g, '').trim());
                     const dest = c[1] || "";
-                    
-                    // 1. IA IMAGE FORCEE
-                    let img = c.find(f => f.startsWith('http'));
-                    if(!img) {
-                        const d = dest.toLowerCase();
-                        if(d.includes("istanbul")) img = cityPhotos.istanbul;
-                        else if(d.includes("tunis")) img = cityPhotos.tunis;
-                        else if(d.includes("antalya")) img = cityPhotos.antalya;
-                        else if(d.includes("alicante")) img = cityPhotos.alicante;
-                        else if(d.includes("constantine")) img = cityPhotos.constantine;
-                        else img = cityPhotos.istanbul; 
-                    }
+                    const isOrg = row.toLowerCase().includes("organise");
+                    const airlineKey = (c[5] || "").toLowerCase();
 
-                    // 2. TRADUCTION COMPAGNIE
-                    let airlineShort = (c[5] || "").toLowerCase();
-                    let airlineFull = companyNames[airlineShort] || (c[5] || "Compagnies Diverses");
+                    // LOGIQUE GÉNÉRATION IMAGE IA HAZAR
+                    let finalImg = c.find(f => f.startsWith('http'));
+                    if(!finalImg) {
+                        if(isOrg) {
+                            if(dest.toLowerCase().includes("istanbul")) finalImg = imgBank.org.istanbul;
+                            else if(dest.toLowerCase().includes("tunis")) finalImg = imgBank.org.tunis;
+                            else if(dest.toLowerCase().includes("antalya")) finalImg = imgBank.org.antalya;
+                            else finalImg = imgBank.org.istanbul;
+                        } else {
+                            finalImg = imgBank.vols[airlineKey] || imgBank.vols.default;
+                        }
+                    }
 
                     return {
                         id: index, date: c[0], dest: dest, prix: c[2], duree: c[3],
                         filterId: (c[3] || "").match(/\d+/) ? (c[3] || "").match(/\d+/)[0] : "all",
-                        bag: c[4], airline: airlineFull, plan: c[6], places: c[7], image: img,
-                        isOrg: row.toLowerCase().includes("organise")
+                        bag: c[4], airline: companyMap[airlineKey] || c[5], plan: c[6], places: c[7], 
+                        image: finalImg, isOrg: isOrg
                     };
                 });
                 render(dataStore);
@@ -162,38 +163,31 @@
             }, {});
 
             Object.keys(groups).forEach(city => {
-                container.innerHTML += `<div class="city-divider"><h3><i class="fas fa-plane text-blue-500 mr-2"></i> ${city}</h3><div class="city-line"></div></div>`;
+                container.innerHTML += `<div class="city-divider"><h3><i class="fas fa-plane-departure text-blue-500 mr-2"></i> ${city}</h3><div class="city-line"></div></div>`;
                 groups[city].forEach(item => {
                     container.innerHTML += `
-                    <div class="card-flight shadow-sm">
+                    <div class="card-flight shadow-sm hover:shadow-xl">
                         <div class="img-container">
                             <img src="${item.image}">
-                            <div class="airline-tag"><i class="fas fa-check-circle text-blue-500"></i> ${item.airline}</div>
+                            <div class="airline-tag"><i class="fas fa-shield-alt text-blue-500 mr-1"></i> ${item.airline}</div>
                             <div class="places-badge">${item.places} ${isNaN(item.places) ? "" : "PLACES"}</div>
                         </div>
                         <div class="p-6">
                             <h2 class="text-xl font-black text-slate-900 uppercase tracking-tighter">${item.dest}</h2>
                             <p class="text-blue-600 font-extrabold text-[11px] uppercase mb-4">${item.date} — ${item.duree}</p>
                             <div class="flex items-center justify-between">
-                                <span class="text-2xl font-black text-slate-900">${item.prix} <small class="text-xs uppercase text-slate-400">DA</small></span>
+                                <span class="text-2xl font-black text-slate-900 tracking-tighter">${item.prix} <small class="text-xs">DA</small></span>
                                 <button onclick="toggleInfo(${item.id})" class="text-[10px] font-black uppercase text-blue-600 border-b-2 border-blue-50">Détails <i class="fas fa-plus ml-1 text-[8px]"></i></button>
                             </div>
                             
                             <div id="info-${item.id}" class="extra-info rounded-2xl mt-4">
                                 <div class="space-y-3 mb-6">
-                                    <div class="flex items-center">
-                                        <i class="fas fa-suitcase text-blue-500 w-5"></i>
-                                        <p class="text-xs font-bold text-slate-700 ml-2">Bagage : ${item.bag}</p>
-                                    </div>
-                                    <div class="flex items-center">
-                                        <i class="fas fa-plane-departure text-blue-500 w-5"></i>
-                                        <p class="text-xs font-bold text-slate-700 ml-2">${item.airline}</p>
-                                    </div>
+                                    <div class="flex items-center"><i class="fas fa-suitcase text-blue-500 w-5"></i><p class="text-xs font-bold text-slate-700 ml-2">Bagage : ${item.bag}</p></div>
                                     <div class="bg-blue-50 p-4 rounded-xl">
                                         <p class="text-[11px] font-medium text-slate-600 leading-relaxed italic">${item.plan}</p>
                                     </div>
                                 </div>
-                                <button onclick="openModal(${item.id})" class="w-full bg-blue-600 text-white py-4 rounded-2xl font-black text-xs uppercase shadow-lg">Réserver</button>
+                                <button onclick="openModal(${item.id})" class="w-full bg-blue-600 text-white py-4 rounded-2xl font-black text-xs uppercase shadow-lg">Réserver Maintenant</button>
                             </div>
                         </div>
                     </div>`;
@@ -201,9 +195,7 @@
             });
         }
 
-        function toggleInfo(id) {
-            document.getElementById(`info-${id}`).classList.toggle('info-active');
-        }
+        function toggleInfo(id) { document.getElementById(`info-${id}`).classList.toggle('info-active'); }
 
         function openModal(id) {
             window.selectedOffer = dataStore.find(i => i.id === id);
@@ -215,13 +207,12 @@
 
         document.getElementById('resForm').onsubmit = async (e) => {
             e.preventDefault();
-            const btn = document.getElementById('submitBtn'); btn.innerText = "ENVOI...";
             const formData = { destination: window.selectedOffer.dest, nom: document.getElementById('nom').value, prenom: document.getElementById('prenom').value, phone: document.getElementById('phone').value, passport: document.getElementById('passport').value };
             try {
                 await fetch(SCRIPT_URL, { method: 'POST', mode: 'no-cors', body: JSON.stringify(formData) });
-                window.open(`https://wa.me/213558332601?text=Réservation: ${window.selectedOffer.dest}`, '_blank');
+                window.open(`https://wa.me/213558332601?text=RESA: ${window.selectedOffer.dest}%0AClient: ${formData.nom}`, '_blank');
                 location.reload();
-            } catch (err) { alert("Erreur"); }
+            } catch (err) { alert("Erreur réseau"); }
         };
 
         function applyFilter(cat) {
