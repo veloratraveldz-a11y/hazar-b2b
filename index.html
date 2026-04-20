@@ -13,11 +13,12 @@
             --gold-elegant: #C5A059; 
             --bg-soft: #F8FAFC;
             --whatsapp-green: #128C7E;
+            --turkish-red: #D92D20;
         }
         
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg-soft); color: var(--deep-blue); margin: 0; padding-top: 170px; scroll-behavior: smooth; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg-soft); color: var(--deep-blue); margin: 0; padding-top: 170px; }
         
-        /* Header Dynamique */
+        /* Header */
         .nav-presta { 
             background: var(--deep-blue); position: fixed; top: 0; left: 0; right: 0; z-index: 1000; 
             padding: 12px 20px; border-bottom: 3px solid var(--gold-elegant); 
@@ -25,7 +26,6 @@
         }
         .nav-hidden { transform: translateY(-100%); }
 
-        /* Filtres */
         .filter-btn { 
             flex-shrink: 0; padding: 8px 20px; border-radius: 10px; font-weight: 600; font-size: 11px; 
             text-transform: uppercase; color: #E5D5B7; border: 1px solid rgba(197, 160, 89, 0.3); 
@@ -33,24 +33,44 @@
         .filter-btn.active { background: var(--gold-elegant); color: white; border-color: var(--gold-elegant); }
 
         /* Cartes & Zoom */
-        .card-flight { background: white; border-radius: 24px; overflow: hidden; border: 1px solid #E5EBF1; transition: 0.3s; }
-        .img-container { height: 220px; position: relative; overflow: hidden; background: #e2e8f0; }
+        .card-flight { background: white; border-radius: 28px; overflow: hidden; border: 1px solid #E5EBF1; transition: 0.3s; display: flex; flex-direction: column; }
+        .img-container { height: 210px; position: relative; overflow: hidden; }
         .img-container img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s ease; }
         .card-flight:hover .img-container img { transform: scale(1.1); }
         
         /* Séparateur Ville */
-        .city-divider { 
-            grid-column: 1 / -1; display: flex; align-items: center; gap: 15px; margin: 40px 0 20px 0; 
-        }
-        .city-divider h3 { font-weight: 800; font-size: 14px; text-transform: uppercase; color: var(--deep-blue); letter-spacing: 1px; }
+        .city-divider { grid-column: 1 / -1; display: flex; align-items: center; gap: 15px; margin: 40px 0 20px 0; }
+        .city-divider h3 { font-weight: 800; font-size: 15px; text-transform: uppercase; color: var(--deep-blue); letter-spacing: 1px; }
         .airplane-icon { color: var(--gold-elegant); font-size: 18px; transform: rotate(45deg); }
         .city-line { height: 1px; background: #CBD5E1; flex-grow: 1; }
 
-        .price-tag { color: #D92D20; font-size: 28px; font-weight: 800; }
-        .btn-whatsapp { background: var(--whatsapp-green); color: white; padding: 16px; border-radius: 14px; font-weight: 700; text-transform: uppercase; display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; transition: 0.3s; }
-        .btn-whatsapp:hover { filter: brightness(1.1); transform: translateY(-2px); }
+        /* PLAN DE VOL PLUS GRAND */
+        .plan-box { 
+            background: #F0F7FF; 
+            border-radius: 16px; 
+            padding: 16px; 
+            font-size: 14px; /* Plus grand */
+            font-weight: 600;
+            color: var(--deep-blue); 
+            margin: 18px 0; 
+            border: 1px solid rgba(197, 160, 89, 0.2);
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
+        }
+        .plan-title {
+            display: block;
+            font-size: 10px;
+            font-weight: 800;
+            text-transform: uppercase;
+            color: var(--gold-elegant);
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+        }
 
-        .airline-tag { position: absolute; top: 15px; left: 15px; background: white; padding: 5px 12px; border-radius: 8px; font-size: 10px; font-weight: 800; color: var(--deep-blue); box-shadow: 0 4px 10px rgba(0,0,0,0.1); border-left: 4px solid var(--gold-elegant); }
+        .price-tag { color: var(--turkish-red); font-size: 34px; font-weight: 800; line-height: 1; letter-spacing: -1px; }
+        .btn-whatsapp { background: var(--whatsapp-green); color: white; padding: 18px; border-radius: 16px; font-weight: 700; text-transform: uppercase; display: flex; align-items: center; justify-content: center; gap: 12px; width: 100%; margin-top: auto; transition: 0.3s; }
+        .btn-whatsapp:hover { filter: brightness(1.1); }
+
+        .airline-tag { position: absolute; top: 15px; left: 15px; background: white; padding: 6px 14px; border-radius: 10px; font-size: 10px; font-weight: 800; color: var(--deep-blue); border-left: 4px solid var(--gold-elegant); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
     </style>
 </head>
 <body>
@@ -66,7 +86,8 @@
             </div>
             
             <div class="flex overflow-x-auto gap-3 pb-1 no-scrollbar">
-                <button onclick="applyFilter('all')" id="btn-all" class="filter-btn active">Toutes les offres</button>
+                <button onclick="applyFilter('all')" id="btn-all" class="filter-btn active">Tout</button>
+                <button onclick="applyFilter('3')" id="btn-3" class="filter-btn">3 Jours</button>
                 <button onclick="applyFilter('4')" id="btn-4" class="filter-btn">4 Jours</button>
                 <button onclick="applyFilter('7')" id="btn-7" class="filter-btn">7 Jours</button>
                 <button onclick="applyFilter('8')" id="btn-8" class="filter-btn">8 Jours</button>
@@ -75,8 +96,7 @@
     </nav>
 
     <main class="max-w-7xl mx-auto px-6 pb-20">
-        <div id="grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-            </div>
+        <div id="grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10"></div>
     </main>
 
     <script>
@@ -86,7 +106,6 @@
 
         const companyFullNames = { "tk": "Turkish Airlines", "ah": "Air Algérie", "tu": "Tunisair" };
 
-        // Header Effet Scroll
         window.addEventListener("scroll", () => {
             const currentScroll = window.pageYOffset;
             const nav = document.getElementById("navbar");
@@ -104,17 +123,16 @@
 
                 dataStore = rows.slice(1).map((row) => {
                     const c = row.split(sep).map(f => f.replace(/"/g, '').trim());
-                    if (row.toLowerCase().includes("organise") || !c[1]) return null;
+                    if (!c[1]) return null;
 
                     const dureeVal = (c[3] || "").match(/\d+/);
-                    let shortName = (c[5] || "").toLowerCase();
+                    let airlineCode = (c[5] || "").toLowerCase();
 
                     return {
                         date: c[0], dest: c[1], prix: c[2], duree: c[3],
                         filterId: dureeVal ? dureeVal[0] : "all",
-                        bag: c[4], airline: companyFullNames[shortName] || c[5] || "Compagnie",
-                        plan: c[6] || "Vol Direct",
-                        places: c[7] || "LIMITÉES",
+                        bag: c[4], airline: companyFullNames[airlineCode] || c[5],
+                        plan: c[6] || "Détails sur demande", 
                         image: c.find(f => f.startsWith('http')) || "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=800"
                     };
                 }).filter(o => o !== null);
@@ -134,12 +152,7 @@
             }, {});
 
             Object.keys(groups).forEach(city => {
-                container.innerHTML += `
-                    <div class="city-divider">
-                        <i class="fas fa-plane airplane-icon"></i>
-                        <h3>${city}</h3>
-                        <div class="city-line"></div>
-                    </div>`;
+                container.innerHTML += `<div class="city-divider"><i class="fas fa-plane airplane-icon"></i><h3>${city}</h3><div class="city-line"></div></div>`;
 
                 groups[city].forEach(item => {
                     container.innerHTML += `
@@ -148,21 +161,21 @@
                             <img src="${item.image}" loading="lazy">
                             <div class="airline-tag">${item.airline}</div>
                         </div>
-                        <div class="p-6">
+                        <div class="p-8 flex flex-col flex-grow">
                             <h2 class="text-2xl font-black text-[var(--deep-blue)] uppercase tracking-tighter mb-1">${item.dest}</h2>
-                            <p class="text-slate-500 font-bold text-xs mb-4 italic">${item.date} — ${item.duree}</p>
+                            <p class="text-slate-500 font-bold text-xs mb-2 uppercase tracking-wide">${item.date} — ${item.duree}</p>
                             
-                            <div class="bg-slate-50 p-3 rounded-xl mb-6 text-[11px] leading-relaxed text-slate-600 border-l-2 border-slate-200">
-                                <span class="block font-bold text-[var(--deep-blue)] mb-1 uppercase tracking-wide">Détails du vol :</span>
+                            <div class="plan-box">
+                                <span class="plan-title"><i class="fas fa-clock mr-1"></i> Détails du vol</span>
                                 ${item.plan}
                             </div>
 
-                            <div class="flex justify-between items-end mb-6">
+                            <div class="flex justify-between items-end mb-8">
                                 <div>
-                                    <span class="text-[10px] font-bold text-slate-400 uppercase block">Tarif Promo</span>
+                                    <span class="text-[10px] font-bold text-slate-400 uppercase block mb-1">Prix Promo</span>
                                     <span class="price-tag">${item.prix} DA</span>
                                 </div>
-                                <div class="text-[11px] font-bold text-slate-500"><i class="fas fa-suitcase mr-1"></i> ${item.bag}</div>
+                                <div class="text-[12px] font-black text-slate-600 bg-slate-100 px-3 py-1 rounded-lg"><i class="fas fa-suitcase mr-1"></i> ${item.bag}</div>
                             </div>
 
                             <button onclick="sendWhatsApp('${item.dest}', '${item.prix}', '${item.date}')" class="btn-whatsapp">
@@ -182,7 +195,7 @@
         }
 
         function sendWhatsApp(dest, prix, date) {
-            const msg = encodeURIComponent(`Bonjour PRESTA TOURS, je souhaite réserver l'offre promotionnelle pour ${dest} (${date}) au prix de ${prix} DA.`);
+            const msg = encodeURIComponent(`Bonjour PRESTA TOURS, je souhaite réserver l'offre ${dest} (${date}) au prix de ${prix} DA.`);
             window.open(`https://wa.me/213558332601?text=${msg}`, '_blank');
         }
 
