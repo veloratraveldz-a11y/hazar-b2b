@@ -30,9 +30,6 @@
         .header-hidden { transform: translateY(-100%); }
 
         /* --- SOCIAL COLORS --- */
-        .fa-facebook-f { color: #1877F2; }
-        .fa-instagram { color: #E4405F; }
-        .fa-tiktok { color: #000000; }
         .social-btn { 
             background: white; 
             width: 32px; height: 32px; 
@@ -40,6 +37,9 @@
             border-radius: 8px; transition: 0.2s;
         }
         .social-btn:hover { transform: scale(1.1); }
+        .social-btn i.fa-facebook-f { color: #1877F2; }
+        .social-btn i.fa-instagram { color: #E4405F; }
+        .social-btn i.fa-tiktok { color: #000000; }
 
         /* --- FILTER BAR --- */
         .filter-bar { 
@@ -65,18 +65,12 @@
             margin: 40px 0 20px 0;
         }
         .group-divider::before, .group-divider::after {
-            content: "";
-            flex: 1;
-            height: 1px;
-            background: #cbd5e1;
+            content: ""; flex: 1; height: 1px; background: #cbd5e1;
         }
         .group-divider span {
-            padding: 0 20px;
-            color: var(--blue);
-            font-weight: 900;
-            font-size: 12px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
+            padding: 0 20px; color: var(--blue);
+            font-weight: 900; font-size: 12px;
+            text-transform: uppercase; letter-spacing: 2px;
         }
 
         /* --- CARDS --- */
@@ -97,7 +91,7 @@
         }
         .price-tag { color: var(--red); font-size: 34px; font-weight: 800; letter-spacing: -1.5px; }
 
-        /* --- MODAL --- */
+        /* --- PROFESSIONAL MODAL LAYOUTS --- */
         #modal { 
             display: none; position: fixed; inset: 0; 
             background: rgba(10, 30, 59, 0.9); z-index: 2000; 
@@ -108,7 +102,25 @@
             background: white; padding: 40px; 
             border-radius: 32px; max-width: 550px; width: 100%; 
             position: relative; animation: slideUp 0.3s ease-out;
+            max-height: 90vh; overflow-y: auto;
         }
+        
+        /* Timeline for Voyage Organise */
+        .timeline-container { border-left: 2px solid var(--gold); margin-left: 15px; padding-left: 25px; }
+        .timeline-item { position: relative; margin-bottom: 25px; font-size: 14px; }
+        .timeline-item::before {
+            content: ""; position: absolute; left: -32px; top: 4px;
+            width: 12px; height: 12px; background: var(--gold);
+            border-radius: 50%; border: 3px solid white; box-shadow: 0 0 5px rgba(0,0,0,0.1);
+        }
+        .timeline-item b { color: var(--blue); display: block; margin-bottom: 2px; }
+
+        /* Flight Cards for Billets */
+        .flight-card { background: #f8fafc; border-radius: 16px; padding: 15px; border: 1px solid #e2e8f0; margin-bottom: 10px; }
+        .flight-row { display: flex; align-items: center; gap: 12px; font-weight: 700; color: var(--blue); }
+        .flight-sep { border-left: 2px dashed var(--gold); height: 20px; margin: 5px 10px; }
+
+        @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
@@ -121,8 +133,8 @@
                 <h1 class="text-white font-extrabold text-xl leading-none tracking-tight">PRESTA TOURS</h1>
                 <div class="flex gap-2.5 mt-2">
                     <a href="https://www.facebook.com/prestatour/" target="_blank" class="social-btn"><i class="fab fa-facebook-f"></i></a>
-                    <a href="https://www.instagram.com/velora_travel" target="_blank" class="social-btn"><i class="fab fa-instagram"></i></a>
-                    <a href="https://www.tiktok.com/@velora_travel" target="_blank" class="social-btn"><i class="fab fa-tiktok"></i></a>
+                    <a href="https://www.instagram.com/presta_tours_/" target="_blank" class="social-btn"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.tiktok.com/@prestatours" target="_blank" class="social-btn"><i class="fab fa-tiktok"></i></a>
                 </div>
             </div>
         </div>
@@ -141,9 +153,9 @@
 
 <div id="modal" onclick="this.style.display='none'">
     <div class="modal-inner" onclick="event.stopPropagation()">
-        <h2 id="m-title" class="text-3xl font-black mb-4 uppercase tracking-tighter text-[var(--blue)]"></h2>
-        <div id="m-body" class="text-gray-600 whitespace-pre-line leading-relaxed text-md bg-gray-50 p-6 rounded-2xl border border-gray-100"></div>
-        <button onclick="document.getElementById('modal').style.display='none'" class="mt-8 w-full bg-[var(--blue)] text-white py-4 rounded-2xl font-bold uppercase shadow-xl">Fermer</button>
+        <h2 id="m-title" class="text-2xl font-black mb-6 uppercase tracking-tighter text-[var(--blue)] border-b pb-4"></h2>
+        <div id="m-body"></div>
+        <button onclick="document.getElementById('modal').style.display='none'" class="mt-8 w-full bg-[var(--blue)] text-white py-4 rounded-2xl font-bold uppercase shadow-xl hover:bg-[var(--gold)] transition-colors">Fermer</button>
     </div>
 </div>
 
@@ -181,7 +193,8 @@
                     plan: parts[6]?.replace(/"/g, "").trim(),
                     places: parts[7]?.replace(/"/g, "").trim(),
                     img: parts[8]?.replace(/"/g, "").trim(),
-                    cat: parts[9]?.replace(/"/g, "").toUpperCase().trim() || ""
+                    cat: parts[9]?.replace(/"/g, "").toUpperCase().trim() || "",
+                    program: parts[10]?.replace(/"/g, "").trim() || "" // New Column K
                 };
             }).filter(item => item.dest);
             display(allData);
@@ -199,17 +212,11 @@
         const grid = document.getElementById('grid');
         grid.innerHTML = "";
 
-        // Sorting Logic: 4 Jours, then 7 Jours, then 8 Jours
-        items.sort((a, b) => {
-            const valA = parseInt(a.duree) || 99;
-            const valB = parseInt(b.duree) || 99;
-            return valA - valB;
-        });
+        items.sort((a, b) => (parseInt(a.duree) || 99) - (parseInt(b.duree) || 99));
 
         let lastDuration = "";
 
-        items.forEach(i => {
-            // Check if we need to insert a duration divider
+        items.forEach((i, idx) => {
             if (i.cat === "BILLET" && i.duree !== lastDuration) {
                 const divider = document.createElement('div');
                 divider.className = "group-divider";
@@ -242,10 +249,9 @@
                         <span class="text-sm font-black text-gray-300">DA</span>
                     </div>
                     <div class="mt-auto space-y-3">
-                        ${i.plan.length > 5 ? `
-                        <button onclick="openModal('${i.dest}', \`${i.plan.replace(/'/g, "\\'")}\`)" class="w-full border-2 border-gray-100 hover:border-[var(--gold)] py-3 rounded-2xl font-black text-[10px] uppercase transition-all tracking-wider text-gray-600">
+                        <button onclick="openEnhancedModal(${allData.indexOf(i)})" class="w-full border-2 border-gray-100 hover:border-[var(--gold)] py-3 rounded-2xl font-black text-[10px] uppercase transition-all tracking-wider text-gray-600">
                             Voir Programme
-                        </button>` : ''}
+                        </button>
                         <button onclick="window.open('https://wa.me/213558332601?text=Intéressé par: ${i.dest} (${i.prix} DA)')" class="w-full bg-[#25D366] hover:bg-[#1eb954] text-white py-4 rounded-2xl font-black text-sm uppercase flex items-center justify-center gap-2 shadow-lg transition-all">
                             <i class="fab fa-whatsapp text-xl"></i> Réserver
                         </button>
@@ -259,9 +265,34 @@
         });
     }
 
-    function openModal(t, b) {
-        document.getElementById('m-title').innerText = t;
-        document.getElementById('m-body').innerText = b;
+    function openEnhancedModal(index) {
+        const item = allData[index];
+        const title = document.getElementById('m-title');
+        const body = document.getElementById('m-body');
+        
+        title.innerText = item.dest;
+        
+        // Logic for Dynamic Modal Content
+        if (item.cat === "BILLET") {
+            const legs = item.program.split('|');
+            body.innerHTML = `
+                <div class="p-2">
+                    <p class="text-xs font-bold text-gray-400 mb-4 uppercase tracking-widest">Plan de Vol Officiel</p>
+                    ${legs.map((leg, i) => `
+                        <div class="flight-card">
+                            <div class="flight-row"><i class="fas fa-plane-departure text-[var(--gold)]"></i> ${leg.trim()}</div>
+                        </div>
+                        ${i < legs.length - 1 ? '<div class="flight-sep"></div>' : ''}
+                    `).join('')}
+                </div>`;
+        } else {
+            const days = item.program.split('<br>');
+            body.innerHTML = `
+                <div class="timeline-container">
+                    ${days.map(day => `<div class="timeline-item">${day.trim()}</div>`).join('')}
+                </div>`;
+        }
+        
         document.getElementById('modal').style.display = 'flex';
     }
 
