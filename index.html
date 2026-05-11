@@ -29,7 +29,7 @@
         }
         .header-hidden { transform: translateY(-100%); }
 
-        /* --- SOCIAL COLORS --- */
+        /* --- SOCIAL BUTTONS --- */
         .social-btn { 
             background: white; 
             width: 32px; height: 32px; 
@@ -53,27 +53,10 @@
             border-radius: 12px; font-weight: 800; 
             font-size: 11px; white-space: nowrap; 
             text-transform: uppercase; letter-spacing: 0.5px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
         }
         .filter-btn.active { background: var(--gold); color: white; }
 
-        /* --- SMART DIVIDER LINE --- */
-        .group-divider {
-            grid-column: 1 / -1;
-            display: flex;
-            align-items: center;
-            margin: 40px 0 20px 0;
-        }
-        .group-divider::before, .group-divider::after {
-            content: ""; flex: 1; height: 1px; background: #cbd5e1;
-        }
-        .group-divider span {
-            padding: 0 20px; color: var(--blue);
-            font-weight: 900; font-size: 12px;
-            text-transform: uppercase; letter-spacing: 2px;
-        }
-
-        /* --- CARDS --- */
+        /* --- CARD STYLING --- */
         .card { 
             background: white; border-radius: 28px; 
             overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.04); 
@@ -81,17 +64,19 @@
             transition: all 0.3s ease; border: 1px solid #edf2f7;
         }
         .card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.08); }
-        .img-box { height: 230px; position: relative; background: #eee; }
-        .img-box img { width: 100%; height: 100%; object-fit: cover; }
+        .img-box { height: 230px; position: relative; background: #eee; overflow: hidden; }
+        .img-box img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+        .card:hover .img-box img { transform: scale(1.05); }
+        
         .badge { 
             position: absolute; top: 15px; left: 15px; 
             background: var(--red); color: white; 
             padding: 6px 14px; border-radius: 10px; 
-            font-size: 10px; font-weight: 900; box-shadow: 0 4px 10px rgba(227, 28, 28, 0.3);
+            font-size: 10px; font-weight: 900;
         }
         .price-tag { color: var(--red); font-size: 34px; font-weight: 800; letter-spacing: -1.5px; }
 
-        /* --- PROFESSIONAL MODAL LAYOUTS --- */
+        /* --- ENHANCED MODAL --- */
         #modal { 
             display: none; position: fixed; inset: 0; 
             background: rgba(10, 30, 59, 0.9); z-index: 2000; 
@@ -99,28 +84,25 @@
             backdrop-filter: blur(8px); 
         }
         .modal-inner { 
-            background: white; padding: 40px; 
-            border-radius: 32px; max-width: 550px; width: 100%; 
-            position: relative; animation: slideUp 0.3s ease-out;
-            max-height: 90vh; overflow-y: auto;
+            background: white; padding: 35px; 
+            border-radius: 32px; max-width: 500px; width: 100%; 
+            position: relative; max-height: 85vh; overflow-y: auto;
         }
-        
-        /* Timeline for Voyage Organise */
-        .timeline-container { border-left: 2px solid var(--gold); margin-left: 15px; padding-left: 25px; }
-        .timeline-item { position: relative; margin-bottom: 25px; font-size: 14px; }
+
+        /* Timeline View (Voyages) */
+        .timeline-container { border-left: 2px solid var(--gold); margin-left: 10px; padding-left: 20px; }
+        .timeline-item { position: relative; margin-bottom: 20px; font-size: 14px; color: #444; line-height: 1.6; }
         .timeline-item::before {
-            content: ""; position: absolute; left: -32px; top: 4px;
+            content: ""; position: absolute; left: -27px; top: 5px;
             width: 12px; height: 12px; background: var(--gold);
-            border-radius: 50%; border: 3px solid white; box-shadow: 0 0 5px rgba(0,0,0,0.1);
+            border-radius: 50%; border: 2px solid white;
         }
-        .timeline-item b { color: var(--blue); display: block; margin-bottom: 2px; }
 
-        /* Flight Cards for Billets */
-        .flight-card { background: #f8fafc; border-radius: 16px; padding: 15px; border: 1px solid #e2e8f0; margin-bottom: 10px; }
-        .flight-row { display: flex; align-items: center; gap: 12px; font-weight: 700; color: var(--blue); }
-        .flight-sep { border-left: 2px dashed var(--gold); height: 20px; margin: 5px 10px; }
+        /* Ticket View (Billets) */
+        .flight-card { background: #f8fafc; border-radius: 12px; padding: 12px; border: 1px solid #e2e8f0; }
+        .flight-row { display: flex; align-items: center; gap: 10px; font-weight: 700; color: var(--blue); font-size: 13px; }
+        .flight-sep { border-left: 2px dashed var(--gold); height: 15px; margin: 5px 8px; }
 
-        @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
@@ -130,7 +112,7 @@
         <div class="flex items-center gap-4">
             <div class="bg-white text-[var(--blue)] w-12 h-12 flex items-center justify-center font-black text-3xl rounded-xl shadow-lg">P</div>
             <div>
-                <h1 class="text-white font-extrabold text-xl leading-none tracking-tight">PRESTA TOURS</h1>
+                <h1 class="text-white font-extrabold text-xl tracking-tight">PRESTA TOURS</h1>
                 <div class="flex gap-2.5 mt-2">
                     <a href="https://www.facebook.com/prestatour/" target="_blank" class="social-btn"><i class="fab fa-facebook-f"></i></a>
                     <a href="https://www.instagram.com/presta_tours_/" target="_blank" class="social-btn"><i class="fab fa-instagram"></i></a>
@@ -138,7 +120,7 @@
                 </div>
             </div>
         </div>
-        <a href="tel:0558332601" class="bg-[var(--gold)] hover:bg-white hover:text-[var(--blue)] text-white px-6 py-3 rounded-2xl font-black text-xs uppercase transition-all shadow-lg">Appeler</a>
+        <a href="tel:0558332601" class="bg-[var(--gold)] text-white px-6 py-3 rounded-2xl font-black text-xs uppercase shadow-lg">Appeler</a>
     </div>
     <div class="filter-bar">
         <button class="filter-btn active" onclick="filter('all', this)">Tous les Offres</button>
@@ -153,27 +135,15 @@
 
 <div id="modal" onclick="this.style.display='none'">
     <div class="modal-inner" onclick="event.stopPropagation()">
-        <h2 id="m-title" class="text-2xl font-black mb-6 uppercase tracking-tighter text-[var(--blue)] border-b pb-4"></h2>
+        <h2 id="m-title" class="text-2xl font-black mb-6 uppercase text-[var(--blue)] border-b pb-4"></h2>
         <div id="m-body"></div>
-        <button onclick="document.getElementById('modal').style.display='none'" class="mt-8 w-full bg-[var(--blue)] text-white py-4 rounded-2xl font-bold uppercase shadow-xl hover:bg-[var(--gold)] transition-colors">Fermer</button>
+        <button onclick="document.getElementById('modal').style.display='none'" class="mt-8 w-full bg-[var(--blue)] text-white py-4 rounded-2xl font-bold uppercase">Fermer</button>
     </div>
 </div>
 
 <script>
-    let lastScroll = 0;
-    const header = document.getElementById('smartHeader');
-    window.addEventListener('scroll', () => {
-        const currentScroll = window.pageYOffset;
-        if (currentScroll > lastScroll && currentScroll > 150) {
-            header.classList.add('header-hidden');
-        } else {
-            header.classList.remove('header-hidden');
-        }
-        lastScroll = currentScroll;
-    });
-
-    const CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQikVMr3Z3Yk4u5zydpB_UZyjgGJ8fUWGaK0ZG2BXid9ZyLxOi9moJwyDyKT0qbBHyEdNbfp3xyaKa3/pub?gid=0&single=true&output=csv";
     let allData = [];
+    const CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQikVMr3Z3Yk4u5zydpB_UZyjgGJ8fUWGaK0ZG2BXid9ZyLxOi9moJwyDyKT0qbBHyEdNbfp3xyaKa3/pub?gid=0&single=true&output=csv";
 
     async function load() {
         try {
@@ -193,43 +163,29 @@
                     plan: parts[6]?.replace(/"/g, "").trim(),
                     places: parts[7]?.replace(/"/g, "").trim(),
                     img: parts[8]?.replace(/"/g, "").trim(),
-                    cat: parts[9]?.replace(/"/g, "").toUpperCase().trim() || "",
-                    program: parts[10]?.replace(/"/g, "").trim() || "" // New Column K
+                    cat: parts[9]?.replace(/"/g, "").toUpperCase().trim(),
+                    program: parts[10]?.replace(/"/g, "").trim()
                 };
-            }).filter(item => item.dest);
+            }).filter(i => i.dest);
             display(allData);
-        } catch (e) { console.error("Sheet Load Error", e); }
+        } catch (e) { console.error("Error:", e); }
     }
 
     function filter(cat, btn) {
         document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
-        const filtered = (cat === 'all') ? allData : allData.filter(i => i.cat === cat);
-        display(filtered);
+        display(cat === 'all' ? allData : allData.filter(i => i.cat === cat));
     }
 
     function display(items) {
         const grid = document.getElementById('grid');
         grid.innerHTML = "";
-
-        items.sort((a, b) => (parseInt(a.duree) || 99) - (parseInt(b.duree) || 99));
-
-        let lastDuration = "";
-
         items.forEach((i, idx) => {
-            if (i.cat === "BILLET" && i.duree !== lastDuration) {
-                const divider = document.createElement('div');
-                divider.className = "group-divider";
-                divider.innerHTML = `<span>Séjours ${i.duree}</span>`;
-                grid.appendChild(divider);
-                lastDuration = i.duree;
-            }
-
-            const logos = i.air.split(/[/,]+/).map(code => 
-                `<img class="h-4 bg-white p-0.5 rounded shadow-sm border border-gray-100" src="https://www.gstatic.com/flights/airline_logos/70px/${code.trim()}.png">`
+            const logos = i.air.split(/[/,]+/).map(c => 
+                `<img class="h-4 bg-white p-0.5 rounded border" src="https://www.gstatic.com/flights/airline_logos/70px/${c.trim()}.png">`
             ).join('');
 
-            const card = `
+            grid.innerHTML += `
             <div class="card">
                 <div class="img-box">
                     <div class="badge">${i.places}</div>
@@ -237,65 +193,47 @@
                     <div class="absolute bottom-3 left-3 flex gap-1.5">${logos}</div>
                 </div>
                 <div class="p-7 flex-grow flex flex-col">
-                    <h3 class="text-2xl font-black uppercase tracking-tighter leading-tight text-[var(--blue)] mb-1">${i.dest}</h3>
-                    <p class="text-xs font-bold text-gray-400 mb-5 uppercase tracking-widest">${i.date} • ${i.duree}</p>
-                    <div class="flex flex-wrap gap-2 mb-6">
-                        <span class="bg-blue-50 text-[var(--blue)] px-3 py-1.5 rounded-lg text-[10px] font-extrabold uppercase flex items-center gap-1.5">
-                            <i class="fas fa-suitcase"></i> ${i.bag}
-                        </span>
+                    <h3 class="text-2xl font-black uppercase text-[var(--blue)] mb-1">${i.dest}</h3>
+                    <p class="text-xs font-bold text-gray-400 mb-5 uppercase">${i.date} • ${i.duree}</p>
+                    <div class="mb-6 flex gap-2">
+                        <span class="bg-blue-50 text-[var(--blue)] px-3 py-1.5 rounded-lg text-[10px] font-extrabold uppercase"><i class="fas fa-suitcase"></i> ${i.bag}</span>
                     </div>
                     <div class="mb-8 flex items-baseline gap-1">
-                        <span class="price-tag">${i.prix}</span>
-                        <span class="text-sm font-black text-gray-300">DA</span>
+                        <span class="price-tag">${i.prix}</span><span class="text-sm font-black text-gray-300">DA</span>
                     </div>
                     <div class="mt-auto space-y-3">
-                        <button onclick="openEnhancedModal(${allData.indexOf(i)})" class="w-full border-2 border-gray-100 hover:border-[var(--gold)] py-3 rounded-2xl font-black text-[10px] uppercase transition-all tracking-wider text-gray-600">
-                            Voir Programme
-                        </button>
-                        <button onclick="window.open('https://wa.me/213558332601?text=Intéressé par: ${i.dest} (${i.prix} DA)')" class="w-full bg-[#25D366] hover:bg-[#1eb954] text-white py-4 rounded-2xl font-black text-sm uppercase flex items-center justify-center gap-2 shadow-lg transition-all">
-                            <i class="fab fa-whatsapp text-xl"></i> Réserver
-                        </button>
+                        <button onclick="openEnhancedModal(${allData.indexOf(i)})" class="w-full border-2 border-gray-100 py-3 rounded-2xl font-black text-[10px] uppercase text-gray-600 hover:border-[var(--gold)] transition-all">Voir Programme</button>
+                        <button onclick="window.open('https://wa.me/213558332601?text=Intéressé par: ${i.dest}')" class="w-full bg-[#25D366] text-white py-4 rounded-2xl font-black text-sm uppercase flex items-center justify-center gap-2 shadow-lg"><i class="fab fa-whatsapp"></i> Réserver</button>
                     </div>
                 </div>
             </div>`;
-            
-            const wrapper = document.createElement('div');
-            wrapper.innerHTML = card;
-            grid.appendChild(wrapper.firstElementChild);
         });
     }
 
     function openEnhancedModal(index) {
         const item = allData[index];
-        const title = document.getElementById('m-title');
+        document.getElementById('m-title').innerText = item.dest;
         const body = document.getElementById('m-body');
         
-        title.innerText = item.dest;
-        
-        // Logic for Dynamic Modal Content
         if (item.cat === "BILLET") {
             const legs = item.program.split('|');
-            body.innerHTML = `
-                <div class="p-2">
-                    <p class="text-xs font-bold text-gray-400 mb-4 uppercase tracking-widest">Plan de Vol Officiel</p>
-                    ${legs.map((leg, i) => `
-                        <div class="flight-card">
-                            <div class="flight-row"><i class="fas fa-plane-departure text-[var(--gold)]"></i> ${leg.trim()}</div>
-                        </div>
-                        ${i < legs.length - 1 ? '<div class="flight-sep"></div>' : ''}
-                    `).join('')}
-                </div>`;
+            body.innerHTML = legs.map((l, i) => `
+                <div class="flight-card"><div class="flight-row"><i class="fas fa-plane text-[var(--gold)]"></i> ${l.trim()}</div></div>
+                ${i < legs.length-1 ? '<div class="flight-sep"></div>' : ''}
+            `).join('');
         } else {
             const days = item.program.split('<br>');
-            body.innerHTML = `
-                <div class="timeline-container">
-                    ${days.map(day => `<div class="timeline-item">${day.trim()}</div>`).join('')}
-                </div>`;
+            body.innerHTML = `<div class="timeline-container">${days.map(d => `<div class="timeline-item">${d.trim()}</div>`).join('')}</div>`;
         }
-        
         document.getElementById('modal').style.display = 'flex';
     }
 
+    window.addEventListener('scroll', () => {
+        const current = window.pageYOffset;
+        header.classList.toggle('header-hidden', current > 150 && current > lastScroll);
+        lastScroll = current;
+    });
+    let lastScroll = 0;
     load();
 </script>
 </body>
