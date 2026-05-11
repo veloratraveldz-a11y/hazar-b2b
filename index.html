@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PRESTA TOURS | Plateforme de Réservation</title>
+    <title>PRESTA TOURS | Catalogue Officiel</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
@@ -29,26 +29,22 @@
         }
         .header-hidden { transform: translateY(-100%); }
 
-        /* --- SOCIAL COLORS (FIXED) --- */
+        /* --- SOCIAL ICONS & COLORS --- */
         .social-btn { 
-            background: white; 
-            width: 32px; height: 32px; 
+            background: white; width: 32px; height: 32px; 
             display: flex; align-items: center; justify-content: center; 
-            border-radius: 8px; transition: 0.2s;
+            border-radius: 8px; transition: 0.3s;
         }
-        .social-btn:hover { transform: scale(1.1); }
-        /* Real Brand Colors on Touch/Hover */
+        .social-btn i { color: #cbd5e1; }
+        .social-btn:hover { transform: translateY(-3px); }
         .social-btn:hover i.fa-facebook-f { color: #1877F2; }
         .social-btn:hover i.fa-instagram { color: #E4405F; }
         .social-btn:hover i.fa-tiktok { color: #000000; }
-        
-        .social-btn i { color: #ccc; transition: 0.3s; }
 
         /* --- FILTER BAR --- */
         .filter-bar { 
-            display: flex; gap: 12px; 
-            overflow-x: auto; padding: 15px 20px; 
-            background: rgba(0,0,0,0.15); 
+            display: flex; gap: 12px; overflow-x: auto; 
+            padding: 15px 20px; background: rgba(0,0,0,0.15); 
             scrollbar-width: none; 
         }
         .filter-btn { 
@@ -60,7 +56,7 @@
         }
         .filter-btn.active { background: var(--gold); color: white; }
 
-        /* --- SMART CATEGORY DIVIDER --- */
+        /* --- DYNAMIC DIVIDERS --- */
         .group-divider {
             grid-column: 1 / -1;
             display: flex;
@@ -84,45 +80,43 @@
             transition: all 0.3s ease; border: 1px solid #edf2f7;
         }
         .card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.08); }
+        
         .img-box { height: 230px; position: relative; background: #eee; overflow: hidden; }
-        .img-box img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+        .img-box img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s; }
         .card:hover .img-box img { transform: scale(1.1); }
         
         .badge { 
             position: absolute; top: 15px; left: 15px; z-index: 10;
             background: var(--red); color: white; 
             padding: 6px 14px; border-radius: 10px; 
-            font-size: 10px; font-weight: 900; box-shadow: 0 4px 10px rgba(227, 28, 28, 0.3);
+            font-size: 10px; font-weight: 900;
         }
         .price-tag { color: var(--red); font-size: 34px; font-weight: 800; letter-spacing: -1.5px; }
 
-        /* --- MODAL STYLES --- */
+        /* --- MODAL DESIGN --- */
         #modal { 
             display: none; position: fixed; inset: 0; 
-            background: rgba(10, 30, 59, 0.9); z-index: 2000; 
+            background: rgba(10, 30, 59, 0.92); z-index: 2000; 
             align-items: center; justify-content: center; padding: 20px; 
-            backdrop-filter: blur(8px); 
+            backdrop-filter: blur(10px); 
         }
         .modal-inner { 
             background: white; padding: 40px; 
             border-radius: 32px; max-width: 550px; width: 100%; 
-            position: relative; animation: slideUp 0.3s ease-out;
-            max-height: 90vh; overflow-y: auto;
+            position: relative; max-height: 85vh; overflow-y: auto;
         }
         
         .timeline-container { border-left: 2px solid var(--gold); margin-left: 15px; padding-left: 25px; }
-        .timeline-item { position: relative; margin-bottom: 25px; font-size: 14px; color: #334155; }
+        .timeline-item { position: relative; margin-bottom: 25px; font-size: 14px; color: #334155; line-height: 1.6; }
         .timeline-item::before {
             content: ""; position: absolute; left: -32px; top: 4px;
             width: 12px; height: 12px; background: var(--gold);
             border-radius: 50%; border: 3px solid white;
         }
 
-        .flight-card { background: #f8fafc; border-radius: 16px; padding: 15px; border: 1px solid #e2e8f0; }
-        .flight-row { display: flex; align-items: center; gap: 12px; font-weight: 700; color: var(--blue); }
+        .flight-card { background: #f8fafc; border-radius: 16px; padding: 18px; border: 1px solid #e2e8f0; }
+        .flight-row { display: flex; align-items: center; gap: 12px; font-weight: 800; color: var(--blue); font-size: 14px; }
         .flight-sep { border-left: 2px dashed var(--gold); height: 20px; margin: 5px 10px; }
-
-        @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
@@ -140,7 +134,7 @@
                 </div>
             </div>
         </div>
-        <a href="tel:0558332601" class="bg-[var(--gold)] text-white px-6 py-3 rounded-2xl font-black text-xs uppercase transition-all shadow-lg hover:scale-105">Appeler</a>
+        <a href="tel:0558332601" class="bg-[var(--gold)] text-white px-6 py-3 rounded-2xl font-black text-xs uppercase shadow-lg hover:scale-105 transition-transform">Appeler</a>
     </div>
     <div class="filter-bar">
         <button class="filter-btn active" onclick="filter('all', this)">Tous les Offres</button>
@@ -155,9 +149,9 @@
 
 <div id="modal" onclick="this.style.display='none'">
     <div class="modal-inner" onclick="event.stopPropagation()">
-        <h2 id="m-title" class="text-2xl font-black mb-6 uppercase tracking-tighter text-[var(--blue)] border-b pb-4"></h2>
+        <h2 id="m-title" class="text-2xl font-black mb-6 uppercase text-[var(--blue)] border-b pb-4"></h2>
         <div id="m-body"></div>
-        <button onclick="document.getElementById('modal').style.display='none'" class="mt-8 w-full bg-[var(--blue)] text-white py-4 rounded-2xl font-bold uppercase shadow-xl hover:bg-[var(--gold)] transition-colors">Fermer</button>
+        <button onclick="document.getElementById('modal').style.display='none'" class="mt-8 w-full bg-[var(--blue)] text-white py-4 rounded-2xl font-bold uppercase shadow-xl">Fermer</button>
     </div>
 </div>
 
@@ -188,33 +182,41 @@
                 };
             }).filter(i => i.dest);
             display(allData);
-        } catch (e) { console.error("Error loading CSV:", e); }
+        } catch (e) { console.error("Error Loading Sheet", e); }
     }
 
     function filter(cat, btn) {
         document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
-        display(cat === 'all' ? allData : allData.filter(i => i.cat === cat));
+        const filtered = (cat === 'all') ? allData : allData.filter(i => i.cat === cat);
+        display(filtered);
     }
 
     function display(items) {
         const grid = document.getElementById('grid');
         grid.innerHTML = "";
         
-        let lastDuration = "";
+        // Sorting: Voyages Organisés first, then Billets by Duration
+        const sortedItems = [...items].sort((a, b) => {
+            if (a.cat !== b.cat) return a.cat === "VOYAGE ORGANISEE" ? -1 : 1;
+            return a.duree.localeCompare(b.duree);
+        });
 
-        items.forEach((i, idx) => {
-            // Re-adding the "Smart Divider" for Billet groupings
-            if (i.cat === "BILLET" && i.duree !== lastDuration) {
-                const divider = document.createElement('div');
-                divider.className = "group-divider";
-                divider.innerHTML = `<span>Séjours ${i.duree}</span>`;
-                grid.appendChild(divider);
-                lastDuration = i.duree;
+        let lastHeader = "";
+
+        sortedItems.forEach((i) => {
+            let currentHeader = i.cat === "VOYAGE ORGANISEE" ? "Nos Voyages Organisés" : `Séjours ${i.duree}`;
+            
+            if (currentHeader !== lastHeader) {
+                const div = document.createElement('div');
+                div.className = "group-divider";
+                div.innerHTML = `<span>${currentHeader}</span>`;
+                grid.appendChild(div);
+                lastHeader = currentHeader;
             }
 
-            const logos = i.air.split(/[/,]+/).map(c => 
-                `<img class="h-4 bg-white p-0.5 rounded shadow-sm border border-gray-100" src="https://www.gstatic.com/flights/airline_logos/70px/${c.trim()}.png">`
+            const airlineLogos = i.air.split(/[/,]+/).map(code => 
+                `<img class="h-4 bg-white p-0.5 rounded border border-gray-100" src="https://www.gstatic.com/flights/airline_logos/70px/${code.trim()}.png">`
             ).join('');
 
             const cardHtml = `
@@ -222,13 +224,13 @@
                 <div class="img-box">
                     <div class="badge">${i.places}</div>
                     <img src="${i.img}" onerror="this.src='https://images.unsplash.com/photo-1436491865332-7a61a109c053?w=800'">
-                    <div class="absolute bottom-3 left-3 flex gap-1.5">${logos}</div>
+                    <div class="absolute bottom-3 left-3 flex gap-1.5">${airlineLogos}</div>
                 </div>
                 <div class="p-7 flex-grow flex flex-col">
-                    <h3 class="text-2xl font-black uppercase tracking-tighter leading-tight text-[var(--blue)] mb-1">${i.dest}</h3>
+                    <h3 class="text-2xl font-black uppercase text-[var(--blue)] leading-tight mb-1">${i.dest}</h3>
                     <p class="text-xs font-bold text-gray-400 mb-5 uppercase tracking-widest">${i.date} • ${i.duree}</p>
-                    <div class="flex flex-wrap gap-2 mb-6">
-                        <span class="bg-blue-50 text-[var(--blue)] px-3 py-1.5 rounded-lg text-[10px] font-extrabold uppercase flex items-center gap-1.5">
+                    <div class="mb-6">
+                        <span class="bg-blue-50 text-[var(--blue)] px-3 py-1.5 rounded-lg text-[10px] font-extrabold uppercase flex items-center gap-1.5 w-max">
                             <i class="fas fa-suitcase"></i> ${i.bag}
                         </span>
                     </div>
@@ -237,19 +239,19 @@
                         <span class="text-sm font-black text-gray-300">DA</span>
                     </div>
                     <div class="mt-auto space-y-3">
-                        <button onclick="openEnhancedModal(${allData.indexOf(i)})" class="w-full border-2 border-gray-100 hover:border-[var(--gold)] py-3 rounded-2xl font-black text-[10px] uppercase transition-all tracking-wider text-gray-600">
+                        <button onclick="openEnhancedModal(${allData.indexOf(i)})" class="w-full border-2 border-gray-100 py-3 rounded-2xl font-black text-[10px] uppercase text-gray-600 hover:border-[var(--gold)] transition-all">
                             Voir Programme
                         </button>
-                        <button onclick="window.open('https://wa.me/213558332601?text=Intéressé par: ${i.dest}')" class="w-full bg-[#25D366] hover:bg-[#1eb954] text-white py-4 rounded-2xl font-black text-sm uppercase flex items-center justify-center gap-2 shadow-lg transition-all">
+                        <button onclick="window.open('https://wa.me/213558332601?text=Bonjour Presta Tours, je suis intéressé par : ${i.dest} (${i.prix} DA)')" class="w-full bg-[#25D366] text-white py-4 rounded-2xl font-black text-sm uppercase flex items-center justify-center gap-2 shadow-lg hover:bg-[#1eb954] transition-colors">
                             <i class="fab fa-whatsapp text-xl"></i> Réserver
                         </button>
                     </div>
                 </div>
             </div>`;
             
-            const div = document.createElement('div');
-            div.innerHTML = cardHtml;
-            grid.appendChild(div.firstElementChild);
+            const wrapper = document.createElement('div');
+            wrapper.innerHTML = cardHtml;
+            grid.appendChild(wrapper.firstElementChild);
         });
     }
 
@@ -258,31 +260,31 @@
         document.getElementById('m-title').innerText = item.dest;
         const body = document.getElementById('m-body');
         
-        // Handling the program data from Column K
-        const content = item.program || "";
+        // Use Column K (Program) or fallback to Column G (Plan)
+        const content = (item.program && item.program.length > 5) ? item.program : item.plan;
         
         if (item.cat === "BILLET") {
             const legs = content.split('|');
-            body.innerHTML = legs.map((leg, i) => `
-                <div class="flight-card">
-                    <div class="flight-row"><i class="fas fa-plane-departure text-[var(--gold)]"></i> ${leg.trim()}</div>
-                </div>
-                ${i < legs.length - 1 ? '<div class="flight-sep"></div>' : ''}
-            `).join('');
+            body.innerHTML = `
+                <p class="text-xs font-bold text-gray-400 mb-4 uppercase tracking-widest">Plan de Vol</p>
+                ${legs.map((leg, i) => `
+                    <div class="flight-card"><div class="flight-row"><i class="fas fa-plane text-[var(--gold)]"></i> ${leg.trim()}</div></div>
+                    ${i < legs.length - 1 ? '<div class="flight-sep"></div>' : ''}
+                `).join('')}`;
         } else {
             const days = content.split('<br>');
-            body.innerHTML = `<div class="timeline-container">${days.map(day => `<div class="timeline-item">${day.trim()}</div>`).join('')}</div>`;
+            body.innerHTML = `<div class="timeline-container">${days.map(d => `<div class="timeline-item">${d.trim()}</div>`).join('')}</div>`;
         }
         document.getElementById('modal').style.display = 'flex';
     }
 
-    // Smart Scroll Logic
+    // Scroll Animation
     let lastScroll = 0;
     window.addEventListener('scroll', () => {
         const current = window.pageYOffset;
-        const header = document.getElementById('smartHeader');
-        if (current > lastScroll && current > 150) header.classList.add('header-hidden');
-        else header.classList.remove('header-hidden');
+        const h = document.getElementById('smartHeader');
+        if (current > lastScroll && current > 150) h.classList.add('header-hidden');
+        else h.classList.remove('header-hidden');
         lastScroll = current;
     });
 
