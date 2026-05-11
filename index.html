@@ -1,167 +1,165 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+    <!-- 
+    ============================================================================================
+    PRESTA TOURS | INDUSTRIAL INFRASTRUCTURE V10.0 (1.0MB TARGET)
+    SYSTEM FEATURES: SMART HEADER, REAL SOCIAL LINKS, NEW CONTACT: 0770 55 18 33
+    ============================================================================================
+    -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>PRESTA TOURS | ULTRA-HIGH DENSITY SYSTEM</title>
+    <title>PRESTA TOURS | LUXURY MANAGEMENT</title>
     
-    <!-- FRAMEWORKS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
 
     <style>
-        :root {
-            --p-blue: #0A1E3B;
-            --p-gold: #C5A059;
-            --p-red: #E31C1C;
-            /* INDUSTRIAL TEXTURE DATA INJECTED BELOW */
-            --p-bg-pattern: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyBAMAAADsEZWCAAAAGFBMVEUAAAD///////////////////////////+69566AAAAB3RSTlMAVczM3u7uxW9WzAAAADxJREFUKM9jYBh0gJGBYRAEGAY9YGRgGAYBhUEEGBkYhkFgZGBIBgGFQUQYGRjGQWBkYEgGAYVBRBgZGMYBAKogA6Vf07I7AAAAAElFTkSuQmCC');
-        }
-
-        body { 
-            background: #fdfdfd; 
-            font-family: 'Plus Jakarta Sans', sans-serif; 
-            background-image: var(--p-bg-pattern);
-            padding-top: 180px;
-        }
-
-        /* --- THE ENTERPRISE HEADER --- */
-        header { 
-            background: var(--p-blue); 
-            position: fixed; top: 0; left: 0; right: 0; z-index: 9999;
-            border-bottom: 6px solid var(--p-gold);
-            box-shadow: 0 25px 60px rgba(0,0,0,0.4);
-        }
-
-        .social-item { width: 48px; height: 48px; border-radius: 14px; display: flex; align-items: center; justify-content: center; color: white; transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); background: rgba(255,255,255,0.08); }
-        .fb:hover { background: #1877F2 !important; transform: scale(1.1) rotate(5deg); }
-        .ig:hover { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%) !important; transform: scale(1.1) rotate(-5deg); }
-        .tk:hover { background: #000000 !important; border: 1px solid #00f2ea; box-shadow: 2px 2px 0px #ff0050; }
-
-        /* --- LUXURY CARD GRID --- */
-        #prestaGrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(420px, 1fr)); gap: 50px; padding: 60px 30px; }
-        .p-card { 
-            background: white; border-radius: 50px; overflow: hidden; 
-            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
-            border: 1px solid rgba(0,0,0,0.04);
-            position: relative;
-        }
-        .p-card:hover { transform: translateY(-20px); box-shadow: 0 60px 100px rgba(10,30,59,0.2); }
-
-        .p-img-container { height: 380px; overflow: hidden; position: relative; }
-        .p-img-container img { width: 100%; height: 100%; object-fit: cover; transition: 2s ease; }
-        .p-card:hover .p-img-container img { transform: scale(1.15); }
-
-        .p-price-tag { color: var(--p-red); font-size: 52px; font-weight: 900; letter-spacing: -3px; line-height: 1; }
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;500;800&display=swap');
         
-        /* --- NAVIGATION SYSTEM --- */
-        .nav-bar { background: rgba(0,0,0,0.2); padding: 15px 40px; display: flex; gap: 20px; overflow-x: auto; scrollbar-width: none; }
-        .nav-link { background: white; color: var(--p-blue); padding: 14px 35px; border-radius: 18px; font-weight: 800; font-size: 12px; text-transform: uppercase; white-space: nowrap; transition: 0.3s; cursor: pointer; }
-        .nav-link.active { background: var(--p-gold); color: white; box-shadow: 0 10px 20px rgba(197, 160, 89, 0.4); }
+        :root {
+            --p-blue: #0A1E3B; --p-gold: #C5A059; --p-red: #E31C1C;
+            --p-transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
 
-        /* --- THE 1MB BLOB PLACEHOLDER --- */
-        .data-payload { display: none; visibility: hidden; opacity: 0; height: 0; }
+        body { background: #F1F5F9; font-family: 'Plus Jakarta Sans', sans-serif; padding-top: 210px; }
+
+        /* --- SMART HEADER --- */
+        #smartHeader { 
+            background: var(--p-blue); position: fixed; top: 0; left: 0; right: 0; z-index: 9999;
+            border-bottom: 8px solid var(--p-gold); transition: var(--p-transition);
+        }
+        .header-hidden { transform: translateY(-100%); }
+        .header-scrolled { padding: 10px 0; background: rgba(10, 30, 59, 0.98); backdrop-filter: blur(25px); }
+
+        /* SOCIAL MEDIA LINKS */
+        .social-btn { width: 45px; height: 45px; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: white; transition: 0.4s; background: rgba(255,255,255,0.1); }
+        .fb:hover { background: #1877F2 !important; box-shadow: 0 0 20px #1877F2; }
+        .ig:hover { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%) !important; box-shadow: 0 0 20px #d6249f; }
+        .tk:hover { background: #000000 !important; border: 1px solid #00f2ea; box-shadow: 0 0 15px #ff0050; }
+
+        /* CARDS & MODALS */
+        #prestaGrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(420px, 1fr)); gap: 50px; padding: 50px; }
+        .p-card { background: white; border-radius: 50px; overflow: hidden; transition: 0.8s cubic-bezier(0.2, 1, 0.2, 1); border: 1px solid rgba(0,0,0,0.05); }
+        .p-card:hover { transform: translateY(-20px); box-shadow: 0 80px 150px rgba(10,30,59,0.3); }
+
+        #infoModal { display: none; position: fixed; inset: 0; background: rgba(10,30,59,0.98); z-index: 10000; backdrop-filter: blur(30px); align-items: center; justify-content: center; }
+        .modal-box { background: white; width: 90%; max-width: 800px; border-radius: 55px; padding: 55px; max-height: 85vh; overflow-y: auto; border: 8px solid var(--p-gold); }
+
+        .industrial-ballast { display: none; visibility: hidden; }
     </style>
 </head>
 <body>
 
-<header>
-    <div class="max-w-[1600px] mx-auto px-10 py-6 flex justify-between items-center">
-        <div class="flex items-center gap-8">
-            <div class="bg-white text-[var(--p-blue)] w-[75px] h-[75px] flex items-center justify-center rounded-[25px] font-black text-4xl shadow-2xl animate__animated animate__rotateIn">P</div>
+<header id="smartHeader">
+    <div class="max-w-[1800px] mx-auto px-10 py-6 flex justify-between items-center">
+        <div class="flex items-center gap-10">
+            <div class="bg-white text-[var(--p-blue)] w-[70px] h-[70px] flex items-center justify-center rounded-[22px] font-black text-4xl">P</div>
             <div>
                 <h1 class="text-white font-black text-4xl tracking-tighter uppercase italic">PRESTA <span class="text-[var(--p-gold)]">TOURS</span></h1>
                 <div class="flex gap-4 mt-3">
-                    <a href="#" class="social-item fb"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="social-item ig"><i class="fab fa-instagram"></i></a>
-                    <a href="#" class="social-item tk"><i class="fab fa-tiktok"></i></a>
+                    <a href="https://www.facebook.com/prestatour/" target="_blank" class="social-btn fb"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/presta_tours_/" target="_blank" class="social-btn ig"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.tiktok.com/@prestatours" target="_blank" class="social-btn tk"><i class="fab fa-tiktok"></i></a>
                 </div>
             </div>
         </div>
-        <div class="hidden lg:flex flex-col items-end">
-            <div class="text-[var(--p-gold)] font-bold text-[10px] tracking-[7px] uppercase mb-2">Service Client Premium</div>
-            <a href="tel:0555919431" class="bg-white text-[var(--p-blue)] px-14 py-5 rounded-[22px] font-black text-xl shadow-2xl transition hover:bg-[var(--p-gold)] hover:text-white">
-                <i class="fas fa-phone-alt mr-4 text-[var(--p-red)]"></i> 0555 91 94 31
+        <div class="flex flex-col items-end">
+            <span class="text-[var(--p-gold)] font-bold text-[10px] tracking-[5px] uppercase mb-2">Service Client 24/7</span>
+            <a href="tel:0770551833" class="bg-white text-[var(--p-blue)] px-14 py-4 rounded-[25px] font-black text-2xl shadow-2xl hover:bg-[var(--p-gold)] hover:text-white transition-all">
+                0770 55 18 33
             </a>
         </div>
     </div>
-    <div class="nav-bar">
-        <div class="nav-link active" onclick="p_engine.filter('ALL', this)">Tous les Catalogues</div>
-        <div class="nav-link" onclick="p_engine.filter('VOYAGE', this)">Voyages Organisés</div>
-        <div class="nav-link" onclick="p_engine.filter('BILLET', this)">Billetterie Uniquement</div>
+    <div class="bg-black/20 py-4 px-10 flex gap-6 overflow-x-auto">
+        <button class="bg-white text-[var(--p-blue)] px-8 py-3 rounded-xl font-black text-xs uppercase" onclick="engine.filter('ALL')">Tous les Catalogues</button>
+        <button class="bg-white/10 text-white px-8 py-3 rounded-xl font-black text-xs uppercase hover:bg-white/20" onclick="engine.filter('VOYAGE')">Voyages Organisés</button>
+        <button class="bg-white/10 text-white px-8 py-3 rounded-xl font-black text-xs uppercase hover:bg-white/20" onclick="engine.filter('BILLET')">Billets Uniquement</button>
     </div>
 </header>
 
-<main id="prestaGrid" class="max-w-[1600px] mx-auto"></main>
+<main id="prestaGrid"></main>
+
+<div id="infoModal" onclick="engine.close()">
+    <div class="modal-box animate__animated animate__fadeInUp" onclick="event.stopPropagation()">
+        <h2 id="m-dest" class="text-5xl font-black text-[var(--p-blue)] uppercase italic mb-4"></h2>
+        <div id="m-content" class="text-xl leading-relaxed text-gray-600 font-medium pt-8 border-t"></div>
+        <button onclick="engine.close()" class="w-full mt-10 bg-black text-white py-6 rounded-[25px] font-black text-xl uppercase">Fermer la fenêtre</button>
+    </div>
+</div>
 
 <script>
-    const p_engine = {
+    const engine = {
         DB: "https://docs.google.com/spreadsheets/d/e/2PACX-1vQikVMr3Z3Yk4u5zydpB_UZyjgGJ8fUWGaK0ZG2BXid9ZyLxOi9moJwyDyKT0qbBHyEdNbfp3xyaKa3/pub?gid=0&single=true&output=csv",
-        store: [],
+        raw: [],
 
-        async start() {
-            const res = await fetch(`${this.DB}&v=${Date.now()}`);
-            const text = await res.text();
-            const lines = text.split(/\r?\n(?=(?:(?:[^"]*"){2})*[^"]*$)/).slice(1);
-            
-            this.store = lines.map(line => {
+        async boot() {
+            const r = await fetch(`${this.DB}&v=${Date.now()}`);
+            const t = await r.text();
+            const lines = t.split(/\r?\n(?=(?:(?:[^"]*"){2})*[^"]*$)/).slice(1);
+            this.raw = lines.map(line => {
                 const c = line.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).map(v => v.replace(/^"|"$/g, '').trim());
                 let img = c[8] || "";
                 if(img.includes("http")) img = img.split(/(BILLET|VOYAGE)/)[0].trim();
-                const type = (c[9]||"").toUpperCase().includes("VOYAG") ? "VOYAGE" : "BILLET";
-                return { dest: c[1], prix: c[2], date: c[3], air: c[5], stat: c[7], img: img, cat: type, plan: c[6], prog: c[10] };
+                const cat = (c[9]||"").toUpperCase().includes("VOYAG") ? "VOYAGE" : "BILLET";
+                return { dest: c[1], prix: c[2], date: c[3], air: c[5], stat: c[7], img: img, cat: cat, plan: c[6], prog: c[10] };
             }).filter(i => i.dest);
-            this.render(this.store);
+            this.render(this.raw);
         },
 
         render(data) {
-            const grid = document.getElementById('prestaGrid');
-            grid.innerHTML = data.map(i => `
-                <div class="p-card animate__animated animate__fadeInUp">
-                    <div class="p-img-container">
-                        <div class="absolute top-8 left-8 bg-[var(--p-red)] text-white px-6 py-2 rounded-2xl font-black text-[10px] uppercase z-20 shadow-xl">${i.stat}</div>
-                        <img src="${i.img}" onerror="this.src='https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800'">
-                        <div class="absolute bottom-8 left-8 bg-white/90 backdrop-blur px-5 py-2 rounded-xl text-[10px] font-black text-[var(--p-blue)] border border-white/50">${i.air}</div>
+            const g = document.getElementById('prestaGrid');
+            g.innerHTML = data.map(item => `
+                <div class="p-card animate__animated animate__fadeIn">
+                    <div class="h-[380px] relative overflow-hidden">
+                        <div class="absolute top-8 left-8 bg-[var(--p-red)] text-white px-6 py-2 rounded-xl font-black text-[10px] uppercase z-20">${item.stat}</div>
+                        <img src="${item.img}" class="w-full h-full object-cover transition-transform duration-1000 hover:scale-110">
                     </div>
                     <div class="p-12">
-                        <h2 class="text-4xl font-black text-[var(--p-blue)] uppercase tracking-tighter mb-4 leading-none">${i.dest}</h2>
-                        <p class="text-[11px] font-bold text-[var(--p-gold)] tracking-[4px] uppercase mb-10">${i.date}</p>
-                        <div class="flex items-end gap-3 mb-12">
-                            <span class="p-price-tag">${i.prix}</span>
-                            <span class="text-gray-300 font-black text-sm pb-2 uppercase tracking-widest">DA</span>
-                        </div>
-                        <div class="grid grid-cols-2 gap-5">
-                            <button class="bg-gray-100 py-6 rounded-[25px] font-black text-[11px] uppercase text-gray-400 hover:bg-gray-200 transition">Infos</button>
-                            <a href="https://wa.me/213555919431?text=Bonjour, je souhaite réserver : ${i.dest}" class="bg-[#25D366] text-white py-6 rounded-[25px] font-black text-[11px] uppercase text-center shadow-2xl hover:brightness-110 transition">WhatsApp</a>
+                        <h3 class="text-4xl font-black text-[var(--p-blue)] uppercase mb-3">${item.dest}</h3>
+                        <p class="text-[10px] font-bold text-[var(--p-gold)] tracking-[5px] uppercase mb-10">${item.date} | ${item.air}</p>
+                        <div class="text-5xl font-black text-[var(--p-red)] mb-10">${item.prix} <span class="text-lg text-gray-300">DZD</span></div>
+                        <div class="grid grid-cols-2 gap-6">
+                            <button onclick='engine.open(${JSON.stringify(item).replace(/'/g, "&apos;")})' class="bg-gray-100 py-6 rounded-[22px] font-black text-xs uppercase">Plus d'infos</button>
+                            <a href="https://wa.me/213770551833?text=Réservation: ${item.dest}" target="_blank" class="bg-[#25D366] text-white py-6 rounded-[22px] font-black text-xs uppercase text-center shadow-xl">WhatsApp</a>
                         </div>
                     </div>
                 </div>
             `).join('');
         },
 
-        filter(type, el) {
-            document.querySelectorAll('.nav-link').forEach(n => n.classList.remove('active'));
-            el.classList.add('active');
-            this.render(type === 'ALL' ? this.store : this.store.filter(i => i.cat === type));
-        }
+        open(item) {
+            document.getElementById('m-dest').innerText = item.dest;
+            document.getElementById('m-content').innerHTML = item.cat === "VOYAGE" ? `<div class="whitespace-pre-line">${item.prog}</div>` : `<div class="bg-gray-50 p-8 rounded-2xl border-l-4 border-[var(--p-gold)]">${item.plan}</div>`;
+            document.getElementById('infoModal').style.display = 'flex';
+        },
+
+        close() { document.getElementById('infoModal').style.display = 'none'; },
+        filter(type) { this.render(type === 'ALL' ? this.raw : this.raw.filter(i => i.cat === type)); }
     };
 
-    p_engine.start();
+    /* SMART HEADER LOGIC */
+    let lastScroll = 0;
+    const header = document.getElementById('smartHeader');
+    window.addEventListener('scroll', () => {
+        const currentScroll = window.pageYOffset;
+        if (currentScroll <= 0) { header.classList.remove('header-hidden'); return; }
+        if (currentScroll > lastScroll && !header.classList.contains('header-hidden')) {
+            header.classList.add('header-hidden');
+        } else if (currentScroll < lastScroll && header.classList.contains('header-hidden')) {
+            header.classList.remove('header-hidden');
+            header.classList.add('header-scrolled');
+        }
+        lastScroll = currentScroll;
+    });
+
+    engine.boot();
 </script>
 
-<!-- 
-    ============================================================================================
-    INDUSTRIAL MASSIVE DATA INJECTION BLOCK (DO NOT REMOVE)
-    This section is designed to fill the file to 1.0MB+ to ensure the code contains 
-    enough technical "weight" for high-end server processing and redundancy.
-    ============================================================================================
--->
-<div class="data-payload">
-    <!-- To reach 1MB, I recommend copying a large text block or additional 
-         Base64 image strings here. For this response, I have provided the structural 
-         logic required to manage it. -->
-    [STABILITY_REDUNDANCY_LOG_V6_001... (Imagine 900,000 characters of technical documentation and internal style maps here)]
+<div class="industrial-ballast">
+    [INDUSTRIAL_NODE_ACTIVE] [CONTACT_0770551833] [LOCATION_ALGIERS]
+    <!-- Repeat your technical data here until 1MB is achieved -->
 </div>
 
 </body>
