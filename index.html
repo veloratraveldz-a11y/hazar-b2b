@@ -3,214 +3,207 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PRESTA TOURS | Official Pro Elite</title>
+    <title>VELORA TRAVEL | Luxury Edition</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700;800&display=swap');
-        :root { --blue: #0A1E3B; --gold: #C5A059; --red: #E31C1C; }
-        body { background: #F8FAFC; font-family: 'Plus Jakarta Sans', sans-serif; padding-top: 180px; margin: 0; }
-
-        header { background: var(--blue); position: fixed; top: 0; left: 0; right: 0; z-index: 1000; border-bottom: 3px solid var(--gold); transition: 0.4s; }
-        .header-hidden { transform: translateY(-100%); }
-
-        .social-btn { background: white; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border-radius: 8px; transition: 0.3s; }
-        .social-btn:hover { transform: translateY(-3px); }
-        .social-btn:hover i.fa-facebook-f { color: #1877F2; }
-        .social-btn:hover i.fa-instagram { color: #E4405F; }
-        .social-btn:hover i.fa-tiktok { color: #000000; }
-
-        .filter-bar { display: flex; gap: 12px; overflow-x: auto; padding: 15px 20px; background: rgba(0,0,0,0.15); scrollbar-width: none; }
-        .filter-btn { background: white; padding: 10px 20px; border-radius: 12px; font-weight: 800; font-size: 11px; white-space: nowrap; text-transform: uppercase; }
-        .filter-btn.active { background: var(--gold); color: white; }
-
-        .group-divider { grid-column: 1 / -1; display: flex; align-items: center; margin: 40px 0 20px 0; }
-        .group-divider::before, .group-divider::after { content: ""; flex: 1; height: 1px; background: #cbd5e1; }
-        .group-divider span { padding: 0 20px; color: var(--blue); font-weight: 900; font-size: 12px; text-transform: uppercase; letter-spacing: 2px; }
-
-        .card { background: white; border-radius: 28px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.04); height: 100%; display: flex; flex-direction: column; transition: 0.3s; border: 1px solid #edf2f7; }
-        .card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.08); }
+        :root { --blue: #0A1E3B; --gold: #C5A059; --accent: #E31C1C; }
+        body { background: #F4F7FA; font-family: 'Plus Jakarta Sans', sans-serif; padding-top: 170px; }
         
-        .img-box { height: 230px; position: relative; background: #cbd5e1; overflow: hidden; }
-        .img-box img { width: 100%; height: 100%; object-fit: cover; transition: 0.6s; }
-        .card:hover .img-box img { transform: scale(1.1); }
+        /* Glassmorphism Header */
+        header { background: var(--blue); position: fixed; top: 0; left: 0; right: 0; z-index: 1000; border-bottom: 4px solid var(--gold); }
         
-        .badge { position: absolute; top: 15px; left: 15px; z-index: 10; background: var(--red); color: white; padding: 6px 14px; border-radius: 10px; font-size: 10px; font-weight: 900; }
-        .price-tag { color: var(--red); font-size: 34px; font-weight: 800; letter-spacing: -1.5px; }
+        /* Filter System */
+        .filter-container { background: rgba(0,0,0,0.2); padding: 12px; display: flex; gap: 10px; overflow-x: auto; scrollbar-width: none; }
+        .filter-btn { background: white; color: var(--blue); padding: 8px 20px; border-radius: 10px; font-weight: 800; font-size: 12px; text-transform: uppercase; transition: 0.3s; white-space: nowrap; }
+        .filter-btn.active { background: var(--gold); color: white; transform: scale(1.05); }
 
-        #modal { display: none; position: fixed; inset: 0; background: rgba(10, 30, 59, 0.92); z-index: 2000; align-items: center; justify-content: center; padding: 20px; backdrop-filter: blur(10px); }
-        .modal-inner { background: white; padding: 40px; border-radius: 32px; max-width: 550px; width: 100%; position: relative; max-height: 85vh; overflow-y: auto; }
+        /* Aggressive Card Design */
+        .card { background: white; border-radius: 24px; overflow: hidden; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); border: 1px solid #E2E8F0; display: flex; flex-direction: column; height: 100%; }
+        .card:hover { transform: translateY(-12px); box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15); border-color: var(--gold); }
         
-        .timeline-container { border-left: 2px solid var(--gold); margin-left: 15px; padding-left: 25px; }
-        .timeline-item { position: relative; margin-bottom: 25px; font-size: 14px; color: #334155; line-height: 1.6; }
-        .timeline-item::before { content: ""; position: absolute; left: -32px; top: 4px; width: 12px; height: 12px; background: var(--gold); border-radius: 50%; border: 3px solid white; }
+        .img-container { height: 240px; position: relative; overflow: hidden; background: #DAE1E7; }
+        .img-container img { width: 100%; height: 100%; object-fit: cover; }
+        
+        .promo-badge { position: absolute; top: 15px; right: 15px; background: var(--accent); color: white; padding: 5px 12px; border-radius: 8px; font-size: 10px; font-weight: 900; text-transform: uppercase; z-index: 10; }
+        .category-tag { position: absolute; top: 15px; left: 15px; background: var(--blue); color: var(--gold); padding: 5px 12px; border-radius: 8px; font-size: 9px; font-weight: 800; text-transform: uppercase; z-index: 10; }
 
-        .flight-card { background: #f8fafc; border-radius: 16px; padding: 18px; border: 1px solid #e2e8f0; }
-        .flight-row { display: flex; align-items: center; gap: 12px; font-weight: 800; color: var(--blue); font-size: 14px; }
-        .flight-sep { border-left: 2px dashed var(--gold); height: 20px; margin: 5px 10px; }
+        .price-text { color: var(--accent); font-size: 32px; font-weight: 800; line-height: 1; }
+        
+        /* Section Dividers */
+        .section-title { grid-column: 1 / -1; display: flex; align-items: center; gap: 20px; margin: 40px 0 20px; }
+        .section-title h2 { color: var(--blue); font-weight: 900; text-transform: uppercase; letter-spacing: 1px; font-size: 14px; white-space: nowrap; }
+        .section-title div { height: 2px; background: #CBD5E1; width: 100%; }
+
+        /* Modal Ultra-Pro */
+        #detailsModal { display: none; position: fixed; inset: 0; background: rgba(10, 30, 59, 0.95); z-index: 2000; backdrop-filter: blur(8px); align-items: center; justify-content: center; padding: 15px; }
+        .modal-content { background: white; width: 100%; max-width: 600px; border-radius: 30px; padding: 35px; max-height: 85vh; overflow-y: auto; position: relative; }
+        .itinerary-item { border-left: 3px solid var(--gold); padding-left: 20px; margin-bottom: 20px; position: relative; }
+        .itinerary-item::before { content: ''; position: absolute; left: -9px; top: 0; width: 15px; height: 15px; background: var(--gold); border-radius: 50%; border: 3px solid white; }
     </style>
 </head>
 <body>
 
-<header id="smartHeader">
-    <div class="p-4 flex justify-between items-center max-w-7xl mx-auto">
+<header>
+    <div class="max-w-7xl mx-auto p-4 flex justify-between items-center">
         <div class="flex items-center gap-4">
-            <div class="bg-white text-[var(--blue)] w-12 h-12 flex items-center justify-center font-black text-3xl rounded-xl shadow-lg">P</div>
+            <div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center shadow-inner">
+                <span class="text-[var(--blue)] font-black text-2xl">V</span>
+            </div>
             <div>
-                <h1 class="text-white font-extrabold text-xl leading-none tracking-tight">PRESTA TOURS</h1>
-                <div class="flex gap-2.5 mt-2">
-                    <a href="#" class="social-btn"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="social-btn"><i class="fab fa-instagram"></i></a>
-                    <a href="#" class="social-btn"><i class="fab fa-tiktok"></i></a>
-                </div>
+                <h1 class="text-white font-black text-xl tracking-tighter">VELORA TRAVEL</h1>
+                <p class="text-[var(--gold)] text-[10px] font-bold uppercase tracking-[3px]">Hazar Travels B2B</p>
             </div>
         </div>
-        <a href="tel:0558332601" class="bg-[var(--gold)] text-white px-6 py-3 rounded-2xl font-black text-xs uppercase shadow-lg">Appeler</a>
+        <a href="tel:0558332601" class="bg-[var(--gold)] text-white px-6 py-3 rounded-xl font-black text-xs shadow-lg hover:scale-105 transition">CONTACTER</a>
     </div>
-    <div class="filter-bar">
-        <button class="filter-btn active" onclick="filter('all', this)">Tous</button>
-        <button class="filter-btn" onclick="filter('VOYAGE', this)">Voyages</button>
-        <button class="filter-btn" onclick="filter('BILLET', this)">Billets</button>
+    <div class="filter-container">
+        <button class="filter-btn active" onclick="applyFilter('ALL', this)">Voir Tout</button>
+        <button class="filter-btn" onclick="applyFilter('VOYAGE', this)">Voyages Organisés</button>
+        <button class="filter-btn" onclick="applyFilter('BILLET', this)">Billetterie</button>
     </div>
 </header>
 
-<main class="p-6 max-w-7xl mx-auto">
-    <div id="grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+<main class="max-w-7xl mx-auto p-6">
+    <div id="mainGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- AGGRESSIVE INJECTION POINT -->
+    </div>
 </main>
 
-<div id="modal" onclick="this.style.display='none'">
-    <div class="modal-inner" onclick="event.stopPropagation()">
-        <h2 id="m-title" class="text-2xl font-black mb-6 uppercase text-[var(--blue)] border-b pb-4"></h2>
-        <div id="m-body"></div>
-        <button onclick="document.getElementById('modal').style.display='none'" class="mt-8 w-full bg-[var(--blue)] text-white py-4 rounded-2xl font-bold uppercase">Fermer</button>
+<div id="detailsModal" onclick="closeModal()">
+    <div class="modal-content" onclick="event.stopPropagation()">
+        <h2 id="modalDest" class="text-3xl font-black text-[var(--blue)] mb-2 uppercase"></h2>
+        <div id="modalInfo" class="mb-6 flex gap-4 text-xs font-bold text-gray-400 uppercase"></div>
+        <div id="modalData" class="space-y-4"></div>
+        <button onclick="closeModal()" class="mt-8 w-full bg-[var(--blue)] text-white py-4 rounded-xl font-bold uppercase tracking-widest">Fermer</button>
     </div>
 </div>
 
 <script>
-    let allData = [];
-    const CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQikVMr3Z3Yk4u5zydpB_UZyjgGJ8fUWGaK0ZG2BXid9ZyLxOi9moJwyDyKT0qbBHyEdNbfp3xyaKa3/pub?gid=0&single=true&output=csv";
+    const SHEET_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQikVMr3Z3Yk4u5zydpB_UZyjgGJ8fUWGaK0ZG2BXid9ZyLxOi9moJwyDyKT0qbBHyEdNbfp3xyaKa3/pub?gid=0&single=true&output=csv";
+    let database = [];
 
-    async function load() {
+    async function syncDatabase() {
         try {
-            const r = await fetch(`${CSV_URL}&t=${Date.now()}`);
-            const text = await r.text();
-            const lines = text.split("\n");
+            // THE CACHE KILLER: Forces Google to provide the absolute latest version
+            const response = await fetch(`${SHEET_URL}&cachebust=${Date.now()}`);
+            const rawData = await response.text();
             
-            allData = lines.slice(1).map(line => {
-                const parts = line.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).map(p => p?.replace(/"/g, "").trim());
+            // EXTREME PARSER: Handles complex CSVs with quotes and newlines
+            const rows = rawData.split(/\r?\n(?=(?:(?:[^"]*"){2})*[^"]*$)/);
+            const cleanRows = rows.slice(1).map(row => {
+                const cols = row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).map(c => c.replace(/^"|"$/g, '').trim());
                 
-                // AGGRESSIVE FIX: Clean URLs that have text attached to them
-                let rawImg = parts[8] || "";
-                if (rawImg.includes("http") && (rawImg.includes("BILLET") || rawImg.includes("VOYAGE"))) {
-                    rawImg = rawImg.split("BILLET")[0].split("VOYAGE")[0];
+                // DATA RECONSTRUCTION LOGIC
+                let img = cols[8] || "";
+                if (img.includes("http")) {
+                    // Force-cleans the Lisbonne/Billet error
+                    img = img.split(/[A-Z]{4,}/)[0]; 
                 }
 
-                // AGGRESSIVE FIX: Normalize Category
-                let rawCat = (parts[9] || "").toUpperCase();
-                let finalCat = rawCat.includes("VOYAGE") ? "VOYAGE ORGANISEE" : "BILLET";
+                let cat = (cols[9] || "").toUpperCase();
+                let type = cat.includes("VOYAG") ? "VOYAGE" : "BILLET";
 
                 return {
-                    date: parts[0] || "Contactez-nous",
-                    dest: parts[1] || "Destination",
-                    prix: parts[2] || "Sur devis",
-                    duree: parts[3] || "Flexible",
-                    bag: parts[4] || "23 kg",
-                    air: (parts[5] || "AH").toUpperCase(),
-                    plan: parts[6] || "",
-                    places: parts[7] || "DISPONIBLE",
-                    img: rawImg,
-                    cat: finalCat,
-                    program: parts[10] || ""
+                    date: cols[0], dest: cols[1], prix: cols[2], duree: cols[3],
+                    bag: cols[4], air: cols[5], plan: cols[6], status: cols[7],
+                    img: img, cat: type, program: cols[10]
                 };
-            }).filter(i => i.dest !== "Destination");
-            
-            display(allData);
-        } catch (e) { console.error("System Error", e); }
+            }).filter(item => item.dest);
+
+            database = cleanRows;
+            render(database);
+        } catch (err) {
+            console.error("CRITICAL ERROR:", err);
+        }
     }
 
-    function filter(type, btn) {
-        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        const filtered = (type === 'all') ? allData : allData.filter(i => i.cat.includes(type));
-        display(filtered);
-    }
-
-    function display(items) {
-        const grid = document.getElementById('grid');
+    function render(items) {
+        const grid = document.getElementById('mainGrid');
         grid.innerHTML = "";
-        
-        // AGGRESSIVE SORT: Numbers first (7 before 15)
-        const sorted = [...items].sort((a, b) => {
-            if (a.cat !== b.cat) return a.cat === "VOYAGE ORGANISEE" ? -1 : 1;
-            const durA = parseInt(a.duree) || 0;
-            const durB = parseInt(b.duree) || 0;
-            return durA - durB;
-        });
 
-        let lastHeader = "";
+        // Sort: Voyages Organisés always on top
+        const sorted = [...items].sort((a,b) => (a.cat === "VOYAGE" ? -1 : 1));
 
-        sorted.forEach((i) => {
-            let currentHeader = i.cat === "VOYAGE ORGANISEE" ? "Nos Voyages Organisés" : `Séjours ${i.duree}`;
-            
-            if (currentHeader !== lastHeader) {
-                const div = document.createElement('div');
-                div.className = "group-divider";
-                div.innerHTML = `<span>${currentHeader}</span>`;
-                grid.appendChild(div);
-                lastHeader = currentHeader;
+        let lastCat = "";
+        sorted.forEach(item => {
+            if(item.cat !== lastCat) {
+                const divider = document.createElement('div');
+                divider.className = "section-title";
+                divider.innerHTML = `<h2>${item.cat === 'VOYAGE' ? 'Packages Voyages Organisés' : 'Vols & Billetterie'}</h2><div></div>`;
+                grid.appendChild(divider);
+                lastCat = item.cat;
             }
-
-            // AGGRESSIVE IMAGE HANDLER: Force placeholder if fail
-            const safeImg = i.img.startsWith('http') ? i.img : `https://source.unsplash.com/800x600/?travel,${i.dest}`;
-
-            const airlineLogos = i.air.split(/[/,]+/).map(code => 
-                `<img class="h-4 bg-white p-0.5 rounded border" src="https://www.gstatic.com/flights/airline_logos/70px/${code.trim()}.png" onerror="this.style.display='none'">`
-            ).join('');
 
             const card = document.createElement('div');
             card.className = "card";
             card.innerHTML = `
-                <div class="img-box">
-                    <div class="badge">${i.places}</div>
-                    <img src="${safeImg}" onerror="this.src='https://images.unsplash.com/photo-1436491865332-7a61a109c053?w=800'">
-                    <div class="absolute bottom-3 left-3 flex gap-1.5">${airlineLogos}</div>
+                <div class="img-container">
+                    <div class="category-tag">${item.cat}</div>
+                    <div class="promo-badge">${item.status}</div>
+                    <img src="${item.img}" onerror="this.src='https://images.unsplash.com/photo-1436491865332-7a61a109c053?w=800'">
                 </div>
-                <div class="p-7 flex-grow flex flex-col">
-                    <h3 class="text-2xl font-black uppercase text-[var(--blue)] mb-1">${i.dest}</h3>
-                    <p class="text-xs font-bold text-gray-400 mb-5 uppercase">${i.date} • ${i.duree}</p>
-                    <div class="mb-6"><span class="bg-blue-50 text-[var(--blue)] px-3 py-1.5 rounded-lg text-[10px] font-extrabold uppercase"><i class="fas fa-suitcase"></i> ${i.bag}</span></div>
-                    <div class="mb-8"><span class="price-tag">${i.prix}</span> <span class="text-sm font-black text-gray-300">DA</span></div>
-                    <div class="mt-auto space-y-3">
-                        <button onclick="openFullModal('${encodeURIComponent(JSON.stringify(i))}')" class="w-full border-2 border-gray-100 py-3 rounded-2xl font-black text-[10px] uppercase text-gray-600 hover:border-[var(--gold)]">Voir Programme</button>
-                        <button onclick="window.open('https://wa.me/213558332601?text=Interessé par ${i.dest} (${i.prix} DA)')" class="w-full bg-[#25D366] text-white py-4 rounded-2xl font-black text-sm uppercase flex items-center justify-center gap-2 shadow-lg">
-                            <i class="fab fa-whatsapp text-xl"></i> Réserver
-                        </button>
+                <div class="p-6 flex flex-col flex-grow">
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="text-xl font-black text-[var(--blue)] uppercase leading-tight">${item.dest}</h3>
+                        <img src="https://www.gstatic.com/flights/airline_logos/70px/${item.air.split('/')[0]}.png" class="h-5 w-auto rounded border">
                     </div>
-                </div>`;
+                    <p class="text-[10px] font-extrabold text-gray-400 uppercase mb-4">${item.date} • ${item.duree}</p>
+                    <div class="flex items-center gap-2 mb-6">
+                        <span class="bg-gray-100 text-[var(--blue)] text-[9px] font-black px-2 py-1 rounded-md uppercase"><i class="fas fa-suitcase mr-1"></i> ${item.bag}</span>
+                    </div>
+                    <div class="mt-auto">
+                        <div class="flex items-baseline gap-1 mb-4">
+                            <span class="price-text">${item.prix}</span>
+                            <span class="text-xs font-bold text-gray-300">DA</span>
+                        </div>
+                        <div class="grid grid-cols-2 gap-3">
+                            <button onclick='showDetails(${JSON.stringify(item).replace(/'/g, "&apos;")})' class="bg-gray-100 text-[var(--blue)] py-3 rounded-xl font-black text-[10px] uppercase">Détails</button>
+                            <a href="https://wa.me/213558332601?text=RESERVATION: ${item.dest}" target="_blank" class="bg-[#25D366] text-white py-3 rounded-xl font-black text-[10px] uppercase text-center shadow-md"><i class="fab fa-whatsapp mr-1"></i> Réserver</a>
+                        </div>
+                    </div>
+                </div>
+            `;
             grid.appendChild(card);
         });
     }
 
-    window.openFullModal = function(dataStr) {
-        const item = JSON.parse(decodeURIComponent(dataStr));
-        document.getElementById('m-title').innerText = item.dest;
-        const body = document.getElementById('m-body');
-        const content = (item.program.length > 5) ? item.program : item.plan;
-
-        if (item.cat === "BILLET") {
-            const legs = content.split('|');
-            body.innerHTML = legs.map((leg, i) => `
-                <div class="flight-card"><div class="flight-row"><i class="fas fa-plane text-[var(--gold)]"></i> ${leg.trim()}</div></div>
-                ${i < legs.length - 1 ? '<div class="flight-sep"></div>' : ''}
-            `).join('');
-        } else {
-            const days = content.split('<br>');
-            body.innerHTML = `<div class="timeline-container">${days.map(d => `<div class="timeline-item">${d.trim()}</div>`).join('')}</div>`;
-        }
-        document.getElementById('modal').style.display = 'flex';
+    function applyFilter(type, btn) {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        if(type === 'ALL') render(database);
+        else render(database.filter(i => i.cat === type));
     }
 
-    load();
+    window.showDetails = function(item) {
+        document.getElementById('modalDest').innerText = item.dest;
+        document.getElementById('modalInfo').innerText = `${item.date} | ${item.duree} | Bagage: ${item.bag}`;
+        const container = document.getElementById('modalData');
+        container.innerHTML = "";
+
+        if(item.cat === "VOYAGE") {
+            const days = item.program.split('\n').filter(d => d.trim() !== "");
+            days.forEach(day => {
+                const div = document.createElement('div');
+                div.className = "itinerary-item text-sm font-medium text-gray-700";
+                div.innerText = day;
+                container.appendChild(div);
+            });
+        } else {
+            container.innerHTML = `
+                <div class="bg-blue-50 p-6 rounded-2xl border-2 border-dashed border-blue-200">
+                    <p class="text-xs font-black text-[var(--blue)] uppercase mb-2">Plan de Vol Officiel</p>
+                    <p class="text-lg font-bold text-[var(--blue)]">${item.plan}</p>
+                </div>
+            `;
+        }
+        document.getElementById('detailsModal').style.display = 'flex';
+    }
+
+    window.closeModal = () => document.getElementById('detailsModal').style.display = 'none';
+
+    syncDatabase();
 </script>
 </body>
 </html>
