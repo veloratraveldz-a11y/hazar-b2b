@@ -3,116 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PRESTA TOURS | Catalogue Officiel</title>
+    <title>PRESTA TOURS | Official Pro Elite</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700;800&display=swap');
-        
         :root { --blue: #0A1E3B; --gold: #C5A059; --red: #E31C1C; }
-        
-        body { 
-            background: #F8FAFC; 
-            font-family: 'Plus Jakarta Sans', sans-serif; 
-            padding-top: 180px; 
-            margin: 0;
-        }
+        body { background: #F8FAFC; font-family: 'Plus Jakarta Sans', sans-serif; padding-top: 180px; margin: 0; }
 
-        /* --- SMART HEADER --- */
-        header { 
-            background: var(--blue); 
-            position: fixed; 
-            top: 0; left: 0; right: 0; 
-            z-index: 1000; 
-            border-bottom: 3px solid var(--gold);
-            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
+        header { background: var(--blue); position: fixed; top: 0; left: 0; right: 0; z-index: 1000; border-bottom: 3px solid var(--gold); transition: 0.4s; }
         .header-hidden { transform: translateY(-100%); }
 
-        /* --- SOCIAL ICONS & COLORS --- */
-        .social-btn { 
-            background: white; width: 32px; height: 32px; 
-            display: flex; align-items: center; justify-content: center; 
-            border-radius: 8px; transition: 0.3s;
-        }
-        .social-btn i { color: #cbd5e1; }
+        .social-btn { background: white; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border-radius: 8px; transition: 0.3s; }
         .social-btn:hover { transform: translateY(-3px); }
         .social-btn:hover i.fa-facebook-f { color: #1877F2; }
         .social-btn:hover i.fa-instagram { color: #E4405F; }
         .social-btn:hover i.fa-tiktok { color: #000000; }
 
-        /* --- FILTER BAR --- */
-        .filter-bar { 
-            display: flex; gap: 12px; overflow-x: auto; 
-            padding: 15px 20px; background: rgba(0,0,0,0.15); 
-            scrollbar-width: none; 
-        }
-        .filter-btn { 
-            background: white; padding: 10px 20px; 
-            border-radius: 12px; font-weight: 800; 
-            font-size: 11px; white-space: nowrap; 
-            text-transform: uppercase; letter-spacing: 0.5px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-        }
+        .filter-bar { display: flex; gap: 12px; overflow-x: auto; padding: 15px 20px; background: rgba(0,0,0,0.15); scrollbar-width: none; }
+        .filter-btn { background: white; padding: 10px 20px; border-radius: 12px; font-weight: 800; font-size: 11px; white-space: nowrap; text-transform: uppercase; }
         .filter-btn.active { background: var(--gold); color: white; }
 
-        /* --- DYNAMIC DIVIDERS --- */
-        .group-divider {
-            grid-column: 1 / -1;
-            display: flex;
-            align-items: center;
-            margin: 40px 0 20px 0;
-        }
-        .group-divider::before, .group-divider::after {
-            content: ""; flex: 1; height: 1px; background: #cbd5e1;
-        }
-        .group-divider span {
-            padding: 0 20px; color: var(--blue);
-            font-weight: 900; font-size: 12px;
-            text-transform: uppercase; letter-spacing: 2px;
-        }
+        .group-divider { grid-column: 1 / -1; display: flex; align-items: center; margin: 40px 0 20px 0; }
+        .group-divider::before, .group-divider::after { content: ""; flex: 1; height: 1px; background: #cbd5e1; }
+        .group-divider span { padding: 0 20px; color: var(--blue); font-weight: 900; font-size: 12px; text-transform: uppercase; letter-spacing: 2px; }
 
-        /* --- LUXURY CARDS --- */
-        .card { 
-            background: white; border-radius: 28px; 
-            overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.04); 
-            height: 100%; display: flex; flex-direction: column; 
-            transition: all 0.3s ease; border: 1px solid #edf2f7;
-        }
+        .card { background: white; border-radius: 28px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.04); height: 100%; display: flex; flex-direction: column; transition: 0.3s; border: 1px solid #edf2f7; }
         .card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.08); }
         
-        .img-box { height: 230px; position: relative; background: #eee; overflow: hidden; }
-        .img-box img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s; }
+        .img-box { height: 230px; position: relative; background: #cbd5e1; overflow: hidden; }
+        .img-box img { width: 100%; height: 100%; object-fit: cover; transition: 0.6s; }
         .card:hover .img-box img { transform: scale(1.1); }
         
-        .badge { 
-            position: absolute; top: 15px; left: 15px; z-index: 10;
-            background: var(--red); color: white; 
-            padding: 6px 14px; border-radius: 10px; 
-            font-size: 10px; font-weight: 900;
-        }
+        .badge { position: absolute; top: 15px; left: 15px; z-index: 10; background: var(--red); color: white; padding: 6px 14px; border-radius: 10px; font-size: 10px; font-weight: 900; }
         .price-tag { color: var(--red); font-size: 34px; font-weight: 800; letter-spacing: -1.5px; }
 
-        /* --- MODAL DESIGN --- */
-        #modal { 
-            display: none; position: fixed; inset: 0; 
-            background: rgba(10, 30, 59, 0.92); z-index: 2000; 
-            align-items: center; justify-content: center; padding: 20px; 
-            backdrop-filter: blur(10px); 
-        }
-        .modal-inner { 
-            background: white; padding: 40px; 
-            border-radius: 32px; max-width: 550px; width: 100%; 
-            position: relative; max-height: 85vh; overflow-y: auto;
-        }
+        #modal { display: none; position: fixed; inset: 0; background: rgba(10, 30, 59, 0.92); z-index: 2000; align-items: center; justify-content: center; padding: 20px; backdrop-filter: blur(10px); }
+        .modal-inner { background: white; padding: 40px; border-radius: 32px; max-width: 550px; width: 100%; position: relative; max-height: 85vh; overflow-y: auto; }
         
         .timeline-container { border-left: 2px solid var(--gold); margin-left: 15px; padding-left: 25px; }
         .timeline-item { position: relative; margin-bottom: 25px; font-size: 14px; color: #334155; line-height: 1.6; }
-        .timeline-item::before {
-            content: ""; position: absolute; left: -32px; top: 4px;
-            width: 12px; height: 12px; background: var(--gold);
-            border-radius: 50%; border: 3px solid white;
-        }
+        .timeline-item::before { content: ""; position: absolute; left: -32px; top: 4px; width: 12px; height: 12px; background: var(--gold); border-radius: 50%; border: 3px solid white; }
 
         .flight-card { background: #f8fafc; border-radius: 16px; padding: 18px; border: 1px solid #e2e8f0; }
         .flight-row { display: flex; align-items: center; gap: 12px; font-weight: 800; color: var(--blue); font-size: 14px; }
@@ -128,18 +59,18 @@
             <div>
                 <h1 class="text-white font-extrabold text-xl leading-none tracking-tight">PRESTA TOURS</h1>
                 <div class="flex gap-2.5 mt-2">
-                    <a href="https://www.facebook.com/prestatour/" target="_blank" class="social-btn"><i class="fab fa-facebook-f"></i></a>
-                    <a href="https://www.instagram.com/presta_tours_/" target="_blank" class="social-btn"><i class="fab fa-instagram"></i></a>
-                    <a href="https://www.tiktok.com/@prestatours" target="_blank" class="social-btn"><i class="fab fa-tiktok"></i></a>
+                    <a href="#" class="social-btn"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-btn"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-btn"><i class="fab fa-tiktok"></i></a>
                 </div>
             </div>
         </div>
-        <a href="tel:0558332601" class="bg-[var(--gold)] text-white px-6 py-3 rounded-2xl font-black text-xs uppercase shadow-lg hover:scale-105 transition-transform">Appeler</a>
+        <a href="tel:0558332601" class="bg-[var(--gold)] text-white px-6 py-3 rounded-2xl font-black text-xs uppercase shadow-lg">Appeler</a>
     </div>
     <div class="filter-bar">
-        <button class="filter-btn active" onclick="filter('all', this)">Tous les Offres</button>
-        <button class="filter-btn" onclick="filter('VOYAGE ORGANISEE', this)">Voyages Organisés</button>
-        <button class="filter-btn" onclick="filter('BILLET', this)">Billets Seuls</button>
+        <button class="filter-btn active" onclick="filter('all', this)">Tous</button>
+        <button class="filter-btn" onclick="filter('VOYAGE', this)">Voyages</button>
+        <button class="filter-btn" onclick="filter('BILLET', this)">Billets</button>
     </div>
 </header>
 
@@ -151,7 +82,7 @@
     <div class="modal-inner" onclick="event.stopPropagation()">
         <h2 id="m-title" class="text-2xl font-black mb-6 uppercase text-[var(--blue)] border-b pb-4"></h2>
         <div id="m-body"></div>
-        <button onclick="document.getElementById('modal').style.display='none'" class="mt-8 w-full bg-[var(--blue)] text-white py-4 rounded-2xl font-bold uppercase shadow-xl">Fermer</button>
+        <button onclick="document.getElementById('modal').style.display='none'" class="mt-8 w-full bg-[var(--blue)] text-white py-4 rounded-2xl font-bold uppercase">Fermer</button>
     </div>
 </div>
 
@@ -166,29 +97,41 @@
             const lines = text.split("\n");
             
             allData = lines.slice(1).map(line => {
-                const parts = line.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
+                const parts = line.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).map(p => p?.replace(/"/g, "").trim());
+                
+                // AGGRESSIVE FIX: Clean URLs that have text attached to them
+                let rawImg = parts[8] || "";
+                if (rawImg.includes("http") && (rawImg.includes("BILLET") || rawImg.includes("VOYAGE"))) {
+                    rawImg = rawImg.split("BILLET")[0].split("VOYAGE")[0];
+                }
+
+                // AGGRESSIVE FIX: Normalize Category
+                let rawCat = (parts[9] || "").toUpperCase();
+                let finalCat = rawCat.includes("VOYAGE") ? "VOYAGE ORGANISEE" : "BILLET";
+
                 return {
-                    date: parts[0]?.replace(/"/g, "").trim(),
-                    dest: parts[1]?.replace(/"/g, "").trim(),
-                    prix: parts[2]?.replace(/"/g, "").trim(),
-                    duree: parts[3]?.replace(/"/g, "").trim(),
-                    bag: parts[4]?.replace(/"/g, "").trim(),
-                    air: parts[5]?.replace(/"/g, "").trim(),
-                    plan: parts[6]?.replace(/"/g, "").trim(),
-                    places: parts[7]?.replace(/"/g, "").trim(),
-                    img: parts[8]?.replace(/"/g, "").trim(),
-                    cat: parts[9]?.replace(/"/g, "").toUpperCase().trim(),
-                    program: parts[10]?.replace(/"/g, "").trim()
+                    date: parts[0] || "Contactez-nous",
+                    dest: parts[1] || "Destination",
+                    prix: parts[2] || "Sur devis",
+                    duree: parts[3] || "Flexible",
+                    bag: parts[4] || "23 kg",
+                    air: (parts[5] || "AH").toUpperCase(),
+                    plan: parts[6] || "",
+                    places: parts[7] || "DISPONIBLE",
+                    img: rawImg,
+                    cat: finalCat,
+                    program: parts[10] || ""
                 };
-            }).filter(i => i.dest);
+            }).filter(i => i.dest !== "Destination");
+            
             display(allData);
-        } catch (e) { console.error("Error Loading Sheet", e); }
+        } catch (e) { console.error("System Error", e); }
     }
 
-    function filter(cat, btn) {
+    function filter(type, btn) {
         document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
-        const filtered = (cat === 'all') ? allData : allData.filter(i => i.cat === cat);
+        const filtered = (type === 'all') ? allData : allData.filter(i => i.cat.includes(type));
         display(filtered);
     }
 
@@ -196,15 +139,17 @@
         const grid = document.getElementById('grid');
         grid.innerHTML = "";
         
-        // Sorting: Voyages Organisés first, then Billets by Duration
-        const sortedItems = [...items].sort((a, b) => {
+        // AGGRESSIVE SORT: Numbers first (7 before 15)
+        const sorted = [...items].sort((a, b) => {
             if (a.cat !== b.cat) return a.cat === "VOYAGE ORGANISEE" ? -1 : 1;
-            return a.duree.localeCompare(b.duree);
+            const durA = parseInt(a.duree) || 0;
+            const durB = parseInt(b.duree) || 0;
+            return durA - durB;
         });
 
         let lastHeader = "";
 
-        sortedItems.forEach((i) => {
+        sorted.forEach((i) => {
             let currentHeader = i.cat === "VOYAGE ORGANISEE" ? "Nos Voyages Organisés" : `Séjours ${i.duree}`;
             
             if (currentHeader !== lastHeader) {
@@ -215,78 +160,55 @@
                 lastHeader = currentHeader;
             }
 
+            // AGGRESSIVE IMAGE HANDLER: Force placeholder if fail
+            const safeImg = i.img.startsWith('http') ? i.img : `https://source.unsplash.com/800x600/?travel,${i.dest}`;
+
             const airlineLogos = i.air.split(/[/,]+/).map(code => 
-                `<img class="h-4 bg-white p-0.5 rounded border border-gray-100" src="https://www.gstatic.com/flights/airline_logos/70px/${code.trim()}.png">`
+                `<img class="h-4 bg-white p-0.5 rounded border" src="https://www.gstatic.com/flights/airline_logos/70px/${code.trim()}.png" onerror="this.style.display='none'">`
             ).join('');
 
-            const cardHtml = `
-            <div class="card">
+            const card = document.createElement('div');
+            card.className = "card";
+            card.innerHTML = `
                 <div class="img-box">
                     <div class="badge">${i.places}</div>
-                    <img src="${i.img}" onerror="this.src='https://images.unsplash.com/photo-1436491865332-7a61a109c053?w=800'">
+                    <img src="${safeImg}" onerror="this.src='https://images.unsplash.com/photo-1436491865332-7a61a109c053?w=800'">
                     <div class="absolute bottom-3 left-3 flex gap-1.5">${airlineLogos}</div>
                 </div>
                 <div class="p-7 flex-grow flex flex-col">
-                    <h3 class="text-2xl font-black uppercase text-[var(--blue)] leading-tight mb-1">${i.dest}</h3>
-                    <p class="text-xs font-bold text-gray-400 mb-5 uppercase tracking-widest">${i.date} • ${i.duree}</p>
-                    <div class="mb-6">
-                        <span class="bg-blue-50 text-[var(--blue)] px-3 py-1.5 rounded-lg text-[10px] font-extrabold uppercase flex items-center gap-1.5 w-max">
-                            <i class="fas fa-suitcase"></i> ${i.bag}
-                        </span>
-                    </div>
-                    <div class="mb-8 flex items-baseline gap-1">
-                        <span class="price-tag">${i.prix}</span>
-                        <span class="text-sm font-black text-gray-300">DA</span>
-                    </div>
+                    <h3 class="text-2xl font-black uppercase text-[var(--blue)] mb-1">${i.dest}</h3>
+                    <p class="text-xs font-bold text-gray-400 mb-5 uppercase">${i.date} • ${i.duree}</p>
+                    <div class="mb-6"><span class="bg-blue-50 text-[var(--blue)] px-3 py-1.5 rounded-lg text-[10px] font-extrabold uppercase"><i class="fas fa-suitcase"></i> ${i.bag}</span></div>
+                    <div class="mb-8"><span class="price-tag">${i.prix}</span> <span class="text-sm font-black text-gray-300">DA</span></div>
                     <div class="mt-auto space-y-3">
-                        <button onclick="openEnhancedModal(${allData.indexOf(i)})" class="w-full border-2 border-gray-100 py-3 rounded-2xl font-black text-[10px] uppercase text-gray-600 hover:border-[var(--gold)] transition-all">
-                            Voir Programme
-                        </button>
-                        <button onclick="window.open('https://wa.me/213558332601?text=Bonjour Presta Tours, je suis intéressé par : ${i.dest} (${i.prix} DA)')" class="w-full bg-[#25D366] text-white py-4 rounded-2xl font-black text-sm uppercase flex items-center justify-center gap-2 shadow-lg hover:bg-[#1eb954] transition-colors">
+                        <button onclick="openFullModal('${encodeURIComponent(JSON.stringify(i))}')" class="w-full border-2 border-gray-100 py-3 rounded-2xl font-black text-[10px] uppercase text-gray-600 hover:border-[var(--gold)]">Voir Programme</button>
+                        <button onclick="window.open('https://wa.me/213558332601?text=Interessé par ${i.dest} (${i.prix} DA)')" class="w-full bg-[#25D366] text-white py-4 rounded-2xl font-black text-sm uppercase flex items-center justify-center gap-2 shadow-lg">
                             <i class="fab fa-whatsapp text-xl"></i> Réserver
                         </button>
                     </div>
-                </div>
-            </div>`;
-            
-            const wrapper = document.createElement('div');
-            wrapper.innerHTML = cardHtml;
-            grid.appendChild(wrapper.firstElementChild);
+                </div>`;
+            grid.appendChild(card);
         });
     }
 
-    function openEnhancedModal(index) {
-        const item = allData[index];
+    window.openFullModal = function(dataStr) {
+        const item = JSON.parse(decodeURIComponent(dataStr));
         document.getElementById('m-title').innerText = item.dest;
         const body = document.getElementById('m-body');
-        
-        // Use Column K (Program) or fallback to Column G (Plan)
-        const content = (item.program && item.program.length > 5) ? item.program : item.plan;
-        
+        const content = (item.program.length > 5) ? item.program : item.plan;
+
         if (item.cat === "BILLET") {
             const legs = content.split('|');
-            body.innerHTML = `
-                <p class="text-xs font-bold text-gray-400 mb-4 uppercase tracking-widest">Plan de Vol</p>
-                ${legs.map((leg, i) => `
-                    <div class="flight-card"><div class="flight-row"><i class="fas fa-plane text-[var(--gold)]"></i> ${leg.trim()}</div></div>
-                    ${i < legs.length - 1 ? '<div class="flight-sep"></div>' : ''}
-                `).join('')}`;
+            body.innerHTML = legs.map((leg, i) => `
+                <div class="flight-card"><div class="flight-row"><i class="fas fa-plane text-[var(--gold)]"></i> ${leg.trim()}</div></div>
+                ${i < legs.length - 1 ? '<div class="flight-sep"></div>' : ''}
+            `).join('');
         } else {
             const days = content.split('<br>');
             body.innerHTML = `<div class="timeline-container">${days.map(d => `<div class="timeline-item">${d.trim()}</div>`).join('')}</div>`;
         }
         document.getElementById('modal').style.display = 'flex';
     }
-
-    // Scroll Animation
-    let lastScroll = 0;
-    window.addEventListener('scroll', () => {
-        const current = window.pageYOffset;
-        const h = document.getElementById('smartHeader');
-        if (current > lastScroll && current > 150) h.classList.add('header-hidden');
-        else h.classList.remove('header-hidden');
-        lastScroll = current;
-    });
 
     load();
 </script>
